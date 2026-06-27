@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>학교폭력 사안처리 안내</title>
+<title>학부모를 위한 학교폭력 사안처리 안내</title>
 <style>
 :root{
   --sky:#D8E8F5;--sky2:#B8CEDF;
@@ -44,6 +44,16 @@ header a:active{opacity:.65}
   display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 
 .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+.role-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+.role-btn2{background:var(--white);border:2.5px solid var(--gray1);border-radius:14px;
+  padding:28px 14px 24px;cursor:pointer;text-align:center;
+  transition:all .22s;box-shadow:0 2px 10px rgba(0,0,0,.06);font-family:inherit;width:100%}
+.role-btn2:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.role-btn2 .ico{font-size:2.6rem;display:block;margin-bottom:12px}
+.role-btn2 .lbl{font-size:1.02rem;font-weight:800;color:var(--dark);line-height:1.4;display:block}
+.role-btn2 .ds{font-size:.9rem;color:var(--gray3);margin-top:6px;line-height:1.4;display:block}
+.role-btn2.v{border-color:var(--blue);background:linear-gradient(160deg,#EEF5FC,var(--sky))}
+.role-btn2.p{border-color:var(--orange);background:linear-gradient(160deg,#FBF2EC,var(--peach))}
 .role-btn{background:var(--white);border:2.5px solid var(--gray1);border-radius:12px;
   padding:20px 12px 18px;cursor:pointer;text-align:center;
   transition:all .22s;box-shadow:0 2px 10px rgba(0,0,0,.06);font-family:inherit;width:100%}
@@ -249,34 +259,38 @@ header a:active{opacity:.65}
 <header>
   <a onclick="goSc('s-home')" title="홈으로 이동" style="display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent;position:relative;width:100%">
     <div>
-      <h1>학교폭력 사안처리 안내</h1>
-      <p>내 상황에 맞는 절차를 바로 확인하세요</p>
+      <h1>학부모를 위한 학교폭력 사안처리 안내</h1>
+      <p>우리 아이 상황에 맞는 절차를 바로 확인하세요</p>
     </div>
-    <span style="position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:.72rem;opacity:.45;font-weight:600;letter-spacing:.3px;white-space:nowrap">↩ 홈</span>
+
   </a>
 </header>
 
 <!-- 홈 -->
 <div class="screen active" id="s-home">
 <div class="wrap">
-  <p class="stl">해당하는 역할을 선택하세요</p>
-  <p style="font-size:.95rem;color:var(--gray3);margin-bottom:18px;line-height:1.5">내 입장을 선택하면 관련 절차와 해야 할 일을 안내합니다.</p>
-  <div class="role-grid">
-    <button class="role-btn v" onclick="goRole('v')"><span class="ico">🛡</span><span class="lbl">피해 관련 학생 보호자</span><span class="ds">우리 아이가 피해를 입었어요</span></button>
-    <button class="role-btn p" onclick="goRole('p')"><span class="ico">⚖</span><span class="lbl">가해 관련 학생 보호자</span><span class="ds">학교로부터 학폭 관련 연락을 받았어요</span></button>
-    <button class="role-btn t" onclick="goRole('t')"><span class="ico">🧑‍🏫</span><span class="lbl">생활부장</span><span class="ds">사안을 인지·처리해야 해요</span></button>
-    <button class="role-btn a" onclick="goRole('a')"><span class="ico">🏫</span><span class="lbl">교감·교장</span><span class="ds">절차 전체를 검토해야 해요</span></button>
+  <p class="stl">지금 어떤 상황이신가요?</p>
+  <p style="font-size:.95rem;color:var(--gray3);margin-bottom:20px;line-height:1.6">갑작스러운 연락에 많이 당황하셨을 겁니다.<br>지금 상황에 맞는 절차를 차근차근 안내해 드리겠습니다.</p>
+  <div class="role-grid-2">
+    <button class="role-btn2 v" onclick="goRole('v')">
+      <span class="ico">🛡</span>
+      <span class="lbl">우리 아이가 피해를 당했어요</span>
+    </button>
+    <button class="role-btn2 p" onclick="goRole('p')">
+      <span class="ico">⚖</span>
+      <span class="lbl">우리 아이가 가해자라고 연락이 왔어요</span>
+    </button>
   </div>
-  <div style="margin-top:26px">
-    <p class="stl">학교장 자체해결 vs 학교폭력대책심의위원회</p>
-    <p style="font-size:.95rem;color:var(--gray3);margin-bottom:12px;line-height:1.5">신고 접수 후 어떤 절차로 처리되는지 4가지 질문으로 확인하세요.</p>
-    <button class="btn btn-p btn-full" onclick="goSc('s-diag')">학교장 자체해결 해당 여부 확인하기</button>
+  <div style="margin-top:22px;background:var(--white);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh)">
+    <p style="font-size:.98rem;font-weight:800;color:var(--blue2);margin-bottom:6px">🔍 학교장 자체해결 해당 여부 확인</p>
+    <p style="font-size:.92rem;color:var(--gray3);margin-bottom:14px;line-height:1.55">신고 접수 후 심의위원회까지 가는지, 학교에서 끝나는지 4가지 질문으로 확인하세요.</p>
+    <button class="btn btn-p btn-full" onclick="goSc('s-diag')">자가진단 시작하기 →</button>
   </div>
-  <div style="margin-top:36px;padding-top:18px;border-top:1px solid var(--gray1);text-align:center">
-    <p style="font-size:.92rem;color:var(--gray3);line-height:1.8">
+  <div style="margin-top:32px;padding-top:18px;border-top:1px solid var(--gray1);text-align:center">
+    <p style="font-size:.88rem;color:var(--gray3);line-height:1.8">
       출처: 2026학년도 학교폭력 사안처리 가이드북
     </p>
-    <p style="font-size:1rem;color:var(--gray2);margin-top:6px">
+    <p style="font-size:.85rem;color:var(--gray2);margin-top:4px">
       만든이 2026 최창훈
     </p>
   </div>
@@ -287,20 +301,20 @@ header a:active{opacity:.65}
 <div class="screen" id="s-v-sel">
 <div class="wrap">
   <p class="stl">피해 관련 학생 보호자</p>
-  <p style="margin-bottom:10px"><button class="btn btn-s" style="padding:6px 14px;font-size:.88rem" onclick="goSc('s-home')">← 역할 선택으로</button></p>
-  <p class="sub">지금 처한 상황과 가장 가까운 항목을 하나 선택하세요.</p>
-  <button class="sit-btn" onclick="goDet('v','1')"><span class="sn" style="background:var(--blue)">1</span><span><span class="st">신고를 했고 학교가 접수했어요</span><span class="sd">접수 직후 해야 할 일과 챙길 것</span></span></button>
-  <button class="sit-btn" onclick="goDet('v','2')"><span class="sn" style="background:var(--blue)">2</span><span><span class="st">학교에서 사안을 조사 중이에요</span><span class="sd">조사 과정에서 보호자 역할과 권리</span></span></button>
-  <button class="sit-btn" onclick="goDet('v','3')"><span class="sn" style="background:var(--blue)">3</span><span><span class="st">학교장 자체해결 얘기를 들었어요</span><span class="sd">학교장 자체해결 동의 여부, 알아야 할 것</span></span></button>
-  <button class="sit-btn" onclick="goDet('v','4')"><span class="sn" style="background:var(--blue)">4</span><span><span class="st">학교폭력대책심의위원회가 열릴 예정이에요</span><span class="sd">위원회 참석, 의견진술 방법</span></span></button>
+  <p style="margin-bottom:10px"><button class="btn btn-s" style="padding:6px 14px;font-size:.88rem" onclick="goSc('s-home')">← 처음으로</button></p>
+  <p class="sub">지금 상황과 가장 가까운 항목을 하나 선택하세요.</p>
+  <button class="sit-btn" onclick="goDet('v','1')"><span class="sn" style="background:var(--blue)">1</span><span><span class="st">방금 신고했어요 / 신고할지 고민 중이에요</span><span class="sd">접수 직후 해야 할 일과 챙길 것</span></span></button>
+  <button class="sit-btn" onclick="goDet('v','2')"><span class="sn" style="background:var(--blue)">2</span><span><span class="st">학교에서 조사한다고 연락이 왔어요</span><span class="sd">조사 과정에서 보호자 역할과 권리</span></span></button>
+  <button class="sit-btn" onclick="goDet('v','3')"><span class="sn" style="background:var(--blue)">3</span><span><span class="st">학교에서 "자체해결"이라는 말을 꺼냈어요</span><span class="sd">동의 여부, 꼭 알아야 할 것</span></span></button>
+  <button class="sit-btn" onclick="goDet('v','4')"><span class="sn" style="background:var(--blue)">4</span><span><span class="st">위원회(심의위원회) 날짜를 통보받았어요</span><span class="sd">위원회 참석, 의견진술 방법</span></span></button>
   <button class="sit-btn" onclick="goDet('v','5')"><span class="sn" style="background:var(--blue)">5</span><span><span class="st">조치 결과를 받았어요</span><span class="sd">피해학생 보호조치 종류와 지원 내용</span></span></button>
-  <button class="sit-btn" onclick="goDet('v','6')"><span class="sn" style="background:var(--blue)">6</span><span><span class="st">결과에 불복하고 싶어요</span><span class="sd">행정심판·행정소송 절차와 기간</span></span></button>
+  <button class="sit-btn" onclick="goDet('v','6')"><span class="sn" style="background:var(--blue)">6</span><span><span class="st">결과가 납득이 안 돼요</span><span class="sd">이의신청(행정심판·행정소송) 절차와 기간</span></span></button>
   <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--gray1)">
     <p class="stl" style="font-size:1rem">자주 묻는 질문</p>
-    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교장 자체해결에 동의하면 정말 취소가 안 되나요? <span class="ar">▼</span></button><div class="acc-b">네. 학교장 자체해결에 동의하면 같은 사안으로 학교폭력대책심의위원회를 다시 요청할 수 없습니다.<br>단, <b>가해 측이 재산 피해 복구 약속을 지키지 않거나</b> 새로운 사실이 확인된 경우는 예외입니다.<br>동의 전에 충분히 생각하고, 확신이 없다면 학교폭력대책심의위원회를 요청하세요.</div></div>
-    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교폭력대책심의위원회 날짜를 학교가 계속 미루면 어떻게 하나요? <span class="ar">▼</span></button><div class="acc-b">학교는 신고 접수 후 <b>14일 이내</b>에 학교폭력대책심의위원회 개최 요청을 완료해야 합니다.<br>기한이 지나도 진행이 없으면 <b>교육지원청 학교폭력제로센터</b>에 직접 문의하거나, 교육감에게 신고할 수 있습니다.</div></div>
+    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">자체해결에 동의하면 정말 취소가 안 되나요? <span class="ar">▼</span></button><div class="acc-b">네. 자체해결에 동의하면 같은 사안으로 심의위원회를 다시 요청할 수 없습니다.<br>단, <b>가해 측이 재산 피해 복구 약속을 지키지 않거나</b> 새로운 사실이 확인된 경우는 예외입니다.<br>동의 전에 충분히 생각하고, 확신이 없다면 심의위원회를 요청하세요.</div></div>
+    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">심의위원회 날짜를 학교가 계속 미루면 어떻게 하나요? <span class="ar">▼</span></button><div class="acc-b">학교는 신고 접수 후 <b>14일 이내</b>에 심의위원회 개최 요청을 완료해야 합니다.<br>기한이 지나도 진행이 없으면 <b>교육지원청 학교폭력제로센터</b>에 직접 문의하거나, 교육감에게 신고할 수 있습니다.</div></div>
     <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">피해학생 보호조치를 학교가 해주지 않으면 어떻게 하나요? <span class="ar">▼</span></button><div class="acc-b">학교장은 긴급한 경우 즉시 보호조치를 할 의무가 있습니다.<br>이행이 지연되거나 거부되면 <b>교육감에게 신고</b>할 수 있으며, 교육감은 지체 없이 조사해야 합니다.</div></div>
-    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">조치 결과에 불복하려면 기간이 얼마나 되나요? <span class="ar">▼</span></button><div class="acc-b">처분을 안 날부터 <b>90일 이내</b>, 처분일부터 <b>180일 이내</b>에 행정심판을 청구해야 합니다.<br>두 기간 중 하나라도 지나면 청구할 수 없으니, 결과를 받은 날짜를 반드시 기록해 두세요.</div></div>
+    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">결과에 이의신청하려면 기간이 얼마나 되나요? <span class="ar">▼</span></button><div class="acc-b">결과를 받은 날부터 <b>90일 이내</b>, 처분일부터 <b>180일 이내</b>에 이의신청(행정심판)을 해야 합니다.<br>두 기간 중 하나라도 지나면 신청할 수 없으니, 결과를 받은 날짜를 반드시 기록해 두세요.</div></div>
   </div>
 </div>
 </div>
@@ -309,49 +323,24 @@ header a:active{opacity:.65}
 <div class="screen" id="s-p-sel">
 <div class="wrap">
   <p class="stl">가해 관련 학생 보호자</p>
-  <p style="margin-bottom:10px"><button class="btn btn-s" style="padding:6px 14px;font-size:.88rem" onclick="goSc('s-home')">← 역할 선택으로</button></p>
-  <p class="sub">지금 처한 상황과 가장 가까운 항목을 하나 선택하세요.</p>
-  <button class="sit-btn" onclick="goDet('p','1')"><span class="sn" style="background:var(--orange)">1</span><span><span class="st">학교에서 연락이 왔어요</span><span class="sd">최초 연락 후 해야 할 일과 마음가짐</span></span></button>
-  <button class="sit-btn" onclick="goDet('p','2')"><span class="sn" style="background:var(--orange)">2</span><span><span class="st">사안조사를 받고 있어요</span><span class="sd">조사 과정에서 권리와 주의사항</span></span></button>
-  <button class="sit-btn" onclick="goDet('p','3')"><span class="sn" style="background:var(--orange)">3</span><span><span class="st">학교장 자체해결로 끝날 수 있다고 해요</span><span class="sd">학교장 자체해결 요건과 가해학생 쪽 할 일</span></span></button>
-  <button class="sit-btn" onclick="goDet('p','4')"><span class="sn" style="background:var(--orange)">4</span><span><span class="st">학교폭력대책심의위원회에 출석해야 해요</span><span class="sd">위원회 구조, 의견진술 준비</span></span></button>
-  <button class="sit-btn" onclick="goDet('p','5')"><span class="sn" style="background:var(--orange)">5</span><span><span class="st">조치를 받았어요 (1~9호)</span><span class="sd">각 조치의 의미와 이행 방법</span></span></button>
-  <button class="sit-btn" onclick="goDet('p','6')"><span class="sn" style="background:var(--orange)">6</span><span><span class="st">결과에 불복하고 싶어요</span><span class="sd">행정심판·행정소송 청구 절차</span></span></button>
+  <p style="margin-bottom:10px"><button class="btn btn-s" style="padding:6px 14px;font-size:.88rem" onclick="goSc('s-home')">← 처음으로</button></p>
+  <p class="sub">지금 상황과 가장 가까운 항목을 하나 선택하세요.</p>
+  <button class="sit-btn" onclick="goDet('p','1')"><span class="sn" style="background:var(--orange)">1</span><span><span class="st">방금 학교에서 연락이 왔어요</span><span class="sd">처음 연락 후 해야 할 일과 마음가짐</span></span></button>
+  <button class="sit-btn" onclick="goDet('p','2')"><span class="sn" style="background:var(--orange)">2</span><span><span class="st">학교에서 조사한다고 연락이 왔어요</span><span class="sd">조사 과정에서 권리와 주의사항</span></span></button>
+  <button class="sit-btn" onclick="goDet('p','3')"><span class="sn" style="background:var(--orange)">3</span><span><span class="st">학교에서 "자체해결"로 끝날 수 있다고 해요</span><span class="sd">자체해결 요건과 가해학생 쪽 할 일</span></span></button>
+  <button class="sit-btn" onclick="goDet('p','4')"><span class="sn" style="background:var(--orange)">4</span><span><span class="st">위원회(심의위원회) 날짜를 통보받았어요</span><span class="sd">위원회 구조, 의견진술 준비</span></span></button>
+  <button class="sit-btn" onclick="goDet('p','5')"><span class="sn" style="background:var(--orange)">5</span><span><span class="st">조치 결과를 받았어요 (1~9호)</span><span class="sd">각 조치의 의미와 이행 방법</span></span></button>
+  <button class="sit-btn" onclick="goDet('p','6')"><span class="sn" style="background:var(--orange)">6</span><span><span class="st">결과가 납득이 안 돼요</span><span class="sd">이의신청(행정심판·행정소송) 청구 절차</span></span></button>
   <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--gray1)">
     <p class="stl" style="font-size:1rem">자주 묻는 질문</p>
-    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">피해 측이 요구하는 것보다 가벼운 조치가 나올 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 학교폭력대책심의위원회는 피해 측 요구를 참고하지만, 반드시 그대로 결정하지는 않습니다.<br>가해학생의 <b>반성 정도, 피해 복구 노력, 사안의 경중, 이전 폭력 이력</b> 등을 종합해 판단합니다.<br>학교폭력대책심의위원회에서 의견진술 기회를 최대한 활용하세요.</div></div>
-    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">자녀가 조사에서 한 말이 그대로 기록되나요? <span class="ar">▼</span></button><div class="acc-b">네. 조사 내용은 확인서 형태로 기록되며, 학교폭력대책심의위원회 제출 서류에 포함됩니다.<br>자녀에게 <b>사실대로만 말하도록</b> 안내하세요. 과장하거나 축소하면 나중에 불이익이 됩니다.<br>확인서에 서명 전 내용을 꼼꼼히 확인하고, 사실과 다른 부분은 수정을 요청할 수 있습니다.</div></div>
-    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">쌍방 폭력이면 둘 다 가해자가 되나요? <span class="ar">▼</span></button><div class="acc-b">네. 쌍방이 모두 폭력을 행사했다면 각각 가해자로 처리될 수 있습니다.<br>상대방이 먼저 폭력을 행사했다면, 이를 <b>반증 자료와 함께 전담기구에 서면으로 제출</b>하세요.<br>필요하다면 상대방을 별도로 신고하는 것도 가능합니다.</div></div>
-    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교장 자체해결로 끝나면 학생부에 아무것도 안 남나요? <span class="ar">▼</span></button><div class="acc-b">네. 학교장 자체해결로 종결되면 <b>학교생활기록부에 기재되지 않습니다.</b><br>반면 학교폭력대책심의위원회를 거쳐 조치가 결정되면 1~9호 모두 학생부에 기재됩니다.<br>학교장 자체해결 요건을 충족하는지 먼저 확인하고, 요건이 된다면 학교장 자체해결이 유리할 수 있습니다.</div></div>
+    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">피해 측이 요구하는 것보다 가벼운 조치가 나올 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 심의위원회는 피해 측 요구를 참고하지만, 반드시 그대로 결정하지는 않습니다.<br>가해학생의 <b>반성 정도, 피해 복구 노력, 사안의 경중, 이전 폭력 이력</b> 등을 종합해 판단합니다.<br>심의위원회에서 의견진술 기회를 최대한 활용하세요.</div></div>
+    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">자녀가 조사에서 한 말이 그대로 기록되나요? <span class="ar">▼</span></button><div class="acc-b">네. 조사 내용은 확인서 형태로 기록되며, 심의위원회 제출 서류에 포함됩니다.<br>자녀에게 <b>사실대로만 말하도록</b> 안내하세요. 과장하거나 축소하면 나중에 불이익이 됩니다.<br>확인서에 서명 전 내용을 꼼꼼히 확인하고, 사실과 다른 부분은 수정을 요청할 수 있습니다.</div></div>
+    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">쌍방 폭력이면 둘 다 가해자가 되나요? <span class="ar">▼</span></button><div class="acc-b">네. 쌍방이 모두 폭력을 행사했다면 각각 가해자로 처리될 수 있습니다.<br>상대방이 먼저 폭력을 행사했다면, 이를 <b>반증 자료와 함께 학교에 서면으로 제출</b>하세요.<br>필요하다면 상대방을 별도로 신고하는 것도 가능합니다.</div></div>
+    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">자체해결로 끝나면 학생부에 아무것도 안 남나요? <span class="ar">▼</span></button><div class="acc-b">네. 자체해결로 종결되면 <b>학교생활기록부에 기재되지 않습니다.</b><br>반면 심의위원회를 거쳐 조치가 결정되면 1~9호 모두 학생부에 기재됩니다.<br>자체해결 요건을 충족하는지 먼저 확인하고, 요건이 된다면 자체해결이 유리할 수 있습니다.</div></div>
   </div>
 </div>
 </div>
 
-<!-- 교사 상황 선택 -->
-<div class="screen" id="s-t-sel">
-<div class="wrap">
-  <p class="stl">생활부장</p>
-  <p style="margin-bottom:10px"><button class="btn btn-s" style="padding:6px 14px;font-size:.88rem" onclick="goSc('s-home')">← 역할 선택으로</button></p>
-  <p class="sub">해당하는 상황을 선택하세요.</p>
-  <button class="sit-btn" onclick="goDet('t','1')"><span class="sn" style="background:var(--green)">1</span><span><span class="st">학교폭력을 인지했어요</span><span class="sd">신고·접수·초기대응 즉시 처리 사항</span></span></button>
-  <button class="sit-btn" onclick="goDet('t','2')"><span class="sn" style="background:var(--green)">2</span><span><span class="st">학부모 면담을 해야 해요</span><span class="sd">피해·가해 보호자 면담 시 유의사항</span></span></button>
-  <button class="sit-btn" onclick="goDet('t','3')"><span class="sn" style="background:var(--green)">3</span><span><span class="st">사안조사에 참여해요</span><span class="sd">진술서 작성, 전담기구 협력</span></span></button>
-  <button class="sit-btn" onclick="goDet('t','4')"><span class="sn" style="background:var(--green)">4</span><span><span class="st">학교폭력대책심의위원회 준비 및 사후지도</span><span class="sd">위원회 출석, 조치 이행 협조, 관계 회복</span></span></button>
-</div>
-</div>
-
-<!-- 관리자 상황 선택 -->
-<div class="screen" id="s-a-sel">
-<div class="wrap">
-  <p class="stl">교감·교장 (관리자)</p>
-  <p style="margin-bottom:10px"><button class="btn btn-s" style="padding:6px 14px;font-size:.88rem" onclick="goSc('s-home')">← 역할 선택으로</button></p>
-  <p class="sub">확인하고 싶은 내용을 선택하세요.</p>
-  <button class="sit-btn" onclick="goDet('a','1')"><span class="sn" style="background:var(--purple)">1</span><span><span class="st">전체 사안처리 절차 흐름</span><span class="sd">신고→조사→학교장 자체해결/학교폭력대책심의위원회→조치→사후지도</span></span></button>
-  <button class="sit-btn" onclick="goDet('a','2')"><span class="sn" style="background:var(--purple)">2</span><span><span class="st">학교장 자체해결 절차</span><span class="sd">요건 4가지, 전담기구 심의, 보고</span></span></button>
-  <button class="sit-btn" onclick="goDet('a','3')"><span class="sn" style="background:var(--purple)">3</span><span><span class="st">학교폭력대책심의위원회 개최 요청</span><span class="sd">제출 서류, 기한, 사례회의 협력</span></span></button>
-  <button class="sit-btn" onclick="goDet('a','4')"><span class="sn" style="background:var(--purple)">4</span><span><span class="st">긴급조치와 학생 분리</span><span class="sd">즉시 분리, 긴급조치 종류, 추인 절차</span></span></button>
-</div>
-</div>
 
 <!-- 상세 안내 -->
 <div class="screen" id="s-det">
@@ -413,50 +402,51 @@ v_1:{title:'신고 접수 직후 해야 할 일',col:'blue',
   html:'<div class="ib"><strong>신고가 접수되었습니다</strong><br>학교는 접수일로부터 <b>14일 이내</b>에 조사·심의·결정까지 완료해야 합니다. 지금부터 챙겨야 할 것을 확인하세요.</div>'+
     '<p class="sh bl">지금 챙겨야 할 것</p>'+
     '<ul class="cl">'+
-    '<li><span class="ci">·</span><span>신체 피해가 있다면 <b>진단서를 준비해 주세요.</b></span></li>'+
+    '<li><span class="ci">·</span><span>신체 피해가 있다면 지금이라도 <b>병원에 가서 진단서</b>를 받으세요. 2주 이상 진단서가 있으면 학교장 자체해결 대상에서 제외됩니다.</span></li>'+
     '<li><span class="ci">·</span><span>메시지, 사진, 동영상 등 <b>증거를 별도 저장</b>해 두세요. 원본은 삭제하지 마세요.</span></li>'+
     '<li><span class="ci">·</span><span>보복이나 추가 피해가 있으면 학교에 <b>즉시 분리 조치</b>를 요청할 수 있습니다.</span></li>'+
     '</ul>'+
-    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">가해학생과 즉시 분리할 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 학교장은 학교폭력 사건을 인지하면 <b>즉시 가해학생과 피해학생을 분리</b>할 의무가 있습니다.<br>피해학생이 긴급보호를 요청하면 심리상담·일시보호·치료·요양 등을 즉시 받을 수 있습니다.<br><br>• 관련학생 쌍방이 서로 피해를 주장하며 분리를 요청하는 경우, <b>양측의 의사를 모두 반영하여 상호분리</b>를 하여야 합니다.<br>• <b>피해학생이 반대의사를 표명하는 경우</b>에는 분리하지 않을 수 있습니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교폭력은 어디에 신고하나요? <span class="ar">▼</span></button><div class="acc-b">학교 전담기구(생활부장·학교폭력책임교사)에 우선 신고합니다.<br>급하면 <b>117(학교폭력 신고센터)</b>나 <b>112(경찰)</b>에도 신고할 수 있습니다.<br>신고를 받은 학교는 지체 없이 학교폭력제로센터(교육지원청)에 보고해야 합니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">가해학생과 즉시 분리할 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 학교장은 학교폭력 사건을 인지하면 <b>즉시 가해학생과 피해학생을 분리</b>할 의무가 있습니다.<br>피해학생이 긴급보호를 요청하면 심리상담·일시보호·치료·요양 등을 즉시 받을 수 있습니다.</div></div>'+
     '<div class="dday-wrap">'+
-    '<p>기한 계산기</p>'+
+    '<p>내가 챙겨야 할 기한 계산기</p>'+
     '<div class="dday-input">'+
-    '<span style="font-size:.88rem;color:var(--gray3)">신고 접수일</span>'+
+    '<span style="font-size:.88rem;color:var(--gray3)">학교에서 연락받은 날</span>'+
     '<input type="date" id="ddayInput" onchange="calcDday()">'+
     '</div>'+
     '<div class="dday-result" id="ddayResult"></div>'+
     '</div>'},
 
 v_2:{title:'사안조사 단계',col:'blue',
-  steps:['신고·접수','사안조사','학교장 자체해결/심의','조치이행','사후지도'],act:1,
-  html:'<div class="ib"><strong>전담기구 또는 조사관이 진행합니다.</strong><br>보호자도 진술할 권리가 있으며, 의견서를 제출할 수 있습니다.</div>'+
+  steps:['신고·접수','사안조사','자체해결/심의','조치이행','사후지도'],act:1,
+  html:'<div class="ib"><strong>학교에서 조사를 진행합니다.</strong><br>보호자도 진술할 권리가 있으며, 의견서를 제출할 수 있습니다.</div>'+
     '<p class="sh bl">이 단계에서 할 일</p>'+
     '<ul class="cl">'+
     '<li><span class="ci">·</span><span>자녀의 진술을 돕되 <b>과도하게 유도하지 않도록</b> 주의하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>진단서, 사진, 메시지 등 <b>증거자료를 전담기구에 제출</b>하세요.</span></li>'+
+    '<li><span class="ci">·</span><span>진단서, 사진, 메시지 등 <b>증거자료를 학교에 제출</b>하세요.</span></li>'+
     '<li><span class="ci">·</span><span>보호자 확인서를 작성할 때 <b>피해 내용을 구체적으로 기재</b>하세요.</span></li>'+
     '<li><span class="ci">·</span><span>학교는 신고 접수 후 <b>14일 이내</b>(필요 시 7일 연장)에 조사·심의·결정까지 완료해야 합니다.</span></li>'+
     '</ul>'+
-    '<div class="ib or"><strong>진단서 제출 시기가 중요합니다</strong><br>신체 피해가 있다면 <b>전담기구 심의 전에</b> 2주 이상 진단서를 제출하세요.<br>진단서가 있으면 학교장 자체해결 대상에서 제외되어 반드시 학교폭력대책심의위원회에서 처리됩니다.</div>'+
+    '<div class="ib or"><strong>진단서 제출 시기가 중요합니다</strong><br>신체 피해가 있다면 <b>학교 심의 전에</b> 2주 이상 진단서를 제출하세요.<br>진단서가 있으면 자체해결 대상에서 제외되어 반드시 심의위원회(학교폭력대책심의위원회)에서 처리됩니다.</div>'+
     '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">비밀 보호는 어떻게 되나요? <span class="ar">▼</span></button><div class="acc-b">학교폭력 관련자의 <b>비밀 누설은 법으로 금지</b>되어 있습니다 (1년 이하 징역 또는 1천만원 이하 벌금).<br>자녀의 이름·주소 등 개인정보는 외부에 공개되어서는 안 됩니다.</div></div>'},
 
 v_3:{title:'학교장 자체해결',col:'blue',
-  steps:['신고·접수','사안조사','학교장 자체해결/심의','조치이행','사후지도'],act:2,
-  html:'<div class="ib"><strong>학교장 자체해결이란?</strong><br>경미한 학교폭력에 대해, 피해 보호자가 동의하면 학교폭력대책심의위원회 없이 학교에서 해결하는 제도입니다.</div>'+
-    '<p class="sh bl">학교장 자체해결 요건 (4가지 모두 충족해야)</p>'+
+  steps:['신고·접수','사안조사','자체해결/심의','조치이행','사후지도'],act:2,
+  html:'<div class="ib"><strong>학교장 자체해결이란?</strong><br>경미한 학교폭력에 대해, 피해 보호자가 동의하면 심의위원회(학교폭력대책심의위원회) 없이 학교에서 해결하는 제도입니다.</div>'+
+    '<p class="sh bl">자체해결 요건 (4가지 모두 충족해야)</p>'+
     '<ul class="cl">'+
     '<li><span class="ci">1️⃣</span><span><b>2주 이상</b> 신체·정신 치료를 요하는 진단서를 발급받지 않은 경우</span></li>'+
     '<li><span class="ci">2️⃣</span><span>재산상 피해가 없거나, <b>즉각 복구되거나 복구 약속</b>이 있는 경우</span></li>'+
     '<li><span class="ci">3️⃣</span><span>학교폭력이 <b>지속적이지 않은</b> 경우</span></li>'+
     '<li><span class="ci">4️⃣</span><span>신고·진술에 대한 <b>보복행위가 아닌</b> 경우</span></li>'+
     '</ul>'+
-    '<div class="ib or"><strong>주의</strong><br>학교장 자체해결에 동의하면 나중에 같은 사안으로 학교폭력대책심의위원회를 <b>다시 요청할 수 없습니다.</b><br>단, 재산상 피해 복구 불이행이나 새로운 사실이 확인된 경우는 예외입니다.</div>'+
-    '<div class="ib"><strong>동의하지 않아도 됩니다</strong><br>요건에 해당하더라도 피해학생과 보호자가 원하면 <b>학교폭력대책심의위원회를 열어달라고 요청할 수 있습니다.</b><br>학교장 자체해결은 강요할 수 없으며, 반드시 자유로운 의사로 동의해야 합니다.</div>'+
-    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교폭력대책심의위원회 요청 후 학교장 자체해결로 바꿀 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 학교폭력대책심의위원회 <b>의결 전까지</b> 학교에 서면으로 개최 취소 의사를 표명하면 학교장 자체해결로 간주합니다.</div></div>'},
+    '<div class="ib or"><strong>주의</strong><br>자체해결에 동의하면 나중에 같은 사안으로 심의위원회를 <b>다시 요청할 수 없습니다.</b><br>단, 재산상 피해 복구 불이행이나 새로운 사실이 확인된 경우는 예외입니다.</div>'+
+    '<div class="ib"><strong>동의하지 않아도 됩니다</strong><br>요건에 해당하더라도 피해학생과 보호자가 원하면 <b>심의위원회를 열어달라고 요청할 수 있습니다.</b><br>자체해결은 강요할 수 없으며, 반드시 자유로운 의사로 동의해야 합니다.</div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">심의위원회 요청 후 자체해결로 바꿀 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 심의위원회 <b>의결 전까지</b> 학교에 서면으로 개최 취소 의사를 표명하면 자체해결로 간주합니다.</div></div>'},
 
-v_4:{title:'학교폭력대책심의위원회 — 피해 측 준비',col:'blue',
-  steps:['신고·접수','사안조사','학교폭력대책심의위원회','조치이행','사후지도'],act:2,
-  html:'<div class="ib"><strong>학교폭력대책심의위원회란?</strong><br>교육지원청에 설치된 위원회로, 학교폭력 조치를 최종 심의·의결합니다. 피해·가해 측 대기실은 분리 운영하며 회의는 비공개입니다.</div>'+
+v_4:{title:'심의위원회 참석 준비',col:'blue',
+  steps:['신고·접수','사안조사','심의위원회','조치이행','사후지도'],act:2,
+  html:'<div class="ib"><strong>심의위원회(학교폭력대책심의위원회)란?</strong><br>교육지원청에 설치된 위원회로, 학교폭력 조치를 최종 심의·의결합니다. 피해·가해 측 대기실은 분리 운영하며 회의는 비공개입니다.</div>'+
     '<p class="sh bl">의견진술 준비</p>'+
     '<ul class="cl">'+
     '<li><span class="ci">·</span><span>피해 경위를 <b>날짜·장소·상황 순서</b>로 정리해 가세요. 감정보다 사실 중심으로 작성합니다.</span></li>'+
@@ -465,14 +455,14 @@ v_4:{title:'학교폭력대책심의위원회 — 피해 측 준비',col:'blue',
     '<li><span class="ci">·</span><span>진단서, 메시지 캡처 등 <b>증거자료를 출력</b>해서 가져가세요.</span></li>'+
     '</ul>'+
     '<div class="tl">'+
-    '<div class="tli" data-icon="①"><div class="tp">학교 요청 후 21일 이내 (7일 연장 가능)</div><div class="tt">학교폭력대책심의위원회 개최</div><div class="tb">학교에서 교육지원청으로 개최 요청 후 21일 이내 개최됩니다.</div></div>'+
-    '<div class="tli" data-icon="②"><div class="tp">의결 후 7일 이내</div><div class="tt">피해학생 조치 결정 통보</div><div class="tb">교육장이 서면으로 통보합니다. 원하는 조치가 반영되지 않았다면 불복 절차를 검토하세요.</div></div>'+
+    '<div class="tli" data-icon="①"><div class="tp">학교 요청 후 21일 이내 (7일 연장 가능)</div><div class="tt">심의위원회 개최</div><div class="tb">학교에서 교육지원청으로 개최 요청 후 21일 이내 개최됩니다.</div></div>'+
+    '<div class="tli" data-icon="②"><div class="tp">의결 후 7일 이내</div><div class="tt">피해학생 조치 결정 통보</div><div class="tb">교육장이 서면으로 통보합니다. 원하는 조치가 반영되지 않았다면 이의신청 절차를 검토하세요.</div></div>'+
     '</div>'+
     '<div class="ib or"><strong>조치 이행이 지연되면</strong><br>피해학생과 보호자는 <b>교육감에게 직접 신고</b>할 수 있습니다.</div>'},
 
 v_5:{title:'보호조치 안내',col:'blue',
-  steps:['신고·접수','사안조사','학교폭력대책심의위원회','조치이행','사후지도'],act:3,
-  html:'<div class="ib"><strong>교육장은 학교폭력대책심의위원회 요청 후 7일 이내에 조치해야 합니다.</strong></div>'+
+  steps:['신고·접수','사안조사','심의위원회','조치이행','사후지도'],act:3,
+  html:'<div class="ib"><strong>심의위원회 요청 후 7일 이내에 조치가 결정됩니다.</strong></div>'+
     '<p class="sh bl">피해학생 보호조치 종류</p>'+
     '<table class="mg"><thead><tr><th>호수</th><th>조치명</th><th>내용</th></tr></thead><tbody>'+
     '<tr><td>제1호</td><td>심리상담·조언</td><td>학내외 전문가 심리치료 (최대 2년)</td></tr>'+
@@ -484,20 +474,20 @@ v_5:{title:'보호조치 안내',col:'blue',
     '<div class="ib gn"><strong>치료비 부담</strong><br>상담·일시보호·치료 비용은 <b>가해 관련 학생 보호자 부담</b>이 원칙입니다.<br>신속한 치료를 위해 학교안전공제회 또는 시·도교육청이 먼저 지급 후 가해 측에 청구할 수 있습니다.</div>'+
     '<div class="ib"><strong>치료 중 출석·성적 불이익 없습니다</strong><br>보호조치로 인한 결석은 학교장이 인정하면 <b>출석일수에 포함</b>됩니다.<br>성적 평가에서도 불이익을 받지 않도록 학교가 노력할 의무가 있습니다.</div>'},
 
-v_6:{title:'불복절차',col:'blue',
-  steps:['신고·접수','사안조사','학교폭력대책심의위원회','조치이행','불복'],act:4,
-  html:'<div class="ib"><strong>교육장의 조치에 이의가 있다면 행정심판을 청구할 수 있습니다.</strong></div>'+
+v_6:{title:'결과에 이의신청하기',col:'blue',
+  steps:['신고·접수','사안조사','심의위원회','조치이행','이의신청'],act:4,
+  html:'<div class="ib"><strong>결과가 납득되지 않는다면 이의신청(행정심판)을 할 수 있습니다.</strong></div>'+
     '<div class="tl">'+
-    '<div class="tli" data-icon="①"><div class="tp">처분을 안 날부터 90일 이내 / 처분일부터 180일 이내</div><div class="tt">행정심판 청구</div><div class="tb">해당 시·도교육청 행정심판위원회에 서면 청구합니다. 두 기간 중 하나라도 지나면 청구할 수 없습니다.</div></div>'+
-    '<div class="tli" data-icon="②"><div class="tp">접수 후 60일 이내 (30일 연장 가능)</div><div class="tt">심판 재결</div><div class="tb">행정심판위원회가 심리 후 재결을 내립니다.</div></div>'+
-    '<div class="tli" data-icon="③"><div class="tp">재결 후 90일 이내</div><div class="tt">행정소송 제기 (추가 불복 시)</div><div class="tb">행정심판 결과에도 불복할 경우 법원에 행정소송을 제기할 수 있습니다.</div></div>'+
+    '<div class="tli" data-icon="①"><div class="tp">결과를 통보받은 날부터 90일 이내 / 처분일부터 180일 이내</div><div class="tt">이의신청(행정심판) 제출</div><div class="tb">해당 시·도교육청 행정심판위원회에 서면으로 제출합니다. 두 기간 중 하나라도 지나면 신청할 수 없습니다.</div></div>'+
+    '<div class="tli" data-icon="②"><div class="tp">접수 후 60일 이내 (30일 연장 가능)</div><div class="tt">심판 결과</div><div class="tb">행정심판위원회가 심리 후 결과를 내립니다.</div></div>'+
+    '<div class="tli" data-icon="③"><div class="tp">결과 후 90일 이내</div><div class="tt">행정소송 제기 (추가 불복 시)</div><div class="tb">이의신청 결과에도 불복할 경우 법원에 행정소송을 제기할 수 있습니다.</div></div>'+
     '</div>'+
-    '<div class="ib or">피해 보호자는 가해학생 조치(1~9호)에 대한 행정심판도 청구할 수 있습니다.<br>이 경우 <b>가해학생 소속 학교가 있는 시·도교육청</b> 행정심판위원회에 청구합니다.</div>'+
-    '<div class="ib"><strong>심판 청구 중에도 조치는 계속 유효합니다</strong><br>행정심판을 청구해도 조치의 효력은 그대로 유지됩니다.<br>조치를 멈추려면 <b>집행정지 신청</b>을 행정심판위원회에 별도로 해야 합니다.</div>'+
+    '<div class="ib or">피해 보호자는 가해학생 조치(1~9호)에 대해서도 이의신청을 할 수 있습니다.<br>이 경우 <b>가해학생 소속 학교가 있는 시·도교육청</b> 행정심판위원회에 제출합니다.</div>'+
+    '<div class="ib"><strong>이의신청 중에도 조치는 계속 유효합니다</strong><br>이의신청을 해도 조치의 효력은 그대로 유지됩니다.<br>조치를 멈추려면 <b>집행정지 신청</b>을 별도로 해야 합니다.</div>'+
     '<div class="dday-wrap">'+
-    '<p>불복 기한 계산기</p>'+
+    '<p>이의신청 기한 계산기</p>'+
     '<div class="dday-input">'+
-    '<span style="font-size:.88rem;color:var(--gray3)">처분(통보) 수령일</span>'+
+    '<span style="font-size:.88rem;color:var(--gray3)">결과 통보를 받은 날</span>'+
     '<input type="date" id="ddayInputP6" onchange="calcDdayP6()">'+
     '</div>'+
     '<div class="dday-result" id="ddayResultP6"></div>'+
@@ -510,57 +500,58 @@ p_1:{title:'처음 연락을 받았을 때',col:'orange',
     '<ul class="cl">'+
     '<li><span class="ci">·</span><span>자녀에게 있었던 일을 들어보되, <b>혼내거나 다그치지 말고</b> 사실을 파악하세요.</span></li>'+
     '<li><span class="ci">·</span><span>학교 담당교사와 면담 일정을 잡아 <b>구체적인 내용을 확인</b>하세요.</span></li>'+
+    '<li><span class="ci">·</span><span><b>사실 확인이 완료되기 전</b>에는 사과나 인정 발언을 삼가세요. 조사 결과를 확인한 후 대응하는 것이 바람직합니다.</span></li>'+
     '<li><span class="ci">·</span><span>피해학생 및 보호자에게 <b>직접 연락하는 것은 자제</b>하세요. 학교를 통해 소통하세요.</span></li>'+
     '</ul>'+
-    '<div class="ib or"><strong>자녀가 즉시 분리될 수 있습니다</strong><br>학교장은 피해학생 보호를 위해 자녀에게 <b>출석정지 등 긴급조치</b>를 즉시 부과할 수 있습니다.<br>긴급조치는 이후 학교폭력대책심의위원회의 추인을 받아 확정됩니다.</div>'},
+    '<div class="ib or"><strong>자녀가 즉시 분리될 수 있습니다</strong><br>학교장은 피해학생 보호를 위해 자녀에게 <b>출석정지 등 긴급조치</b>를 즉시 부과할 수 있습니다.<br>긴급조치는 이후 심의위원회(학교폭력대책심의위원회)의 추인을 받아 확정됩니다.</div>'},
 
 p_2:{title:'사안조사 단계',col:'orange',
-  steps:['연락수신','사안조사','학교장 자체해결/심의','조치이행','사후지도'],act:1,
+  steps:['연락수신','사안조사','자체해결/심의','조치이행','사후지도'],act:1,
   html:'<div class="ib or"><strong>가해학생과 보호자도 의견진술 기회를 보장받습니다.</strong></div>'+
     '<div class="ib"><strong>조사는 이렇게 진행됩니다</strong><br>· 피해·가해 학생을 <b>개별적으로 따로</b> 조사합니다 (동시 대면 없음)<br>· 자녀에게 <b>있었던 일을 사실대로 말하도록</b> 안내하세요. 진술 내용은 기록됩니다</div>'+
     '<p class="sh or">가해 측에게 보장된 권리</p>'+
     '<ul class="cl">'+
-    '<li><span class="ci">·</span><span>전담기구 심의 전 <b>의견진술 기회</b>를 받을 권리가 있습니다</span></li>'+
-    '<li><span class="ci">·</span><span>학교폭력대책심의위원회 출석 전 <b>의견서를 제출</b>할 수 있습니다</span></li>'+
-    '<li><span class="ci">·</span><span>학교폭력대책심의위원회 <b>회의록 열람·복사</b>를 신청할 수 있습니다 (개인정보 제외)</span></li>'+
-    '<li><span class="ci">·</span><span>조치 결정에 불복 시 <b>처분을 안 날부터 90일 이내</b> 행정심판 청구 가능합니다</span></li>'+
+    '<li><span class="ci">·</span><span>학교 심의 전 <b>의견진술 기회</b>를 받을 권리가 있습니다</span></li>'+
+    '<li><span class="ci">·</span><span>심의위원회 출석 전 <b>의견서를 제출</b>할 수 있습니다</span></li>'+
+    '<li><span class="ci">·</span><span>심의위원회 <b>회의록 열람·복사</b>를 신청할 수 있습니다 (개인정보 제외)</span></li>'+
+    '<li><span class="ci">·</span><span>결과에 이의가 있을 경우 <b>결과를 받은 날부터 90일 이내</b> 이의신청(행정심판) 가능합니다</span></li>'+
     '</ul>'+
     '<p class="sh or">이 단계에서 할 일</p>'+
     '<ul class="cl">'+
     '<li><span class="ci">·</span><span>자녀와 함께 <b>사실에 근거한 진술</b>을 준비하세요. 허위 진술은 더 큰 불이익으로 이어질 수 있습니다.</span></li>'+
     '<li><span class="ci">·</span><span>보호자 확인서 작성 시 <b>구체적이고 솔직하게</b> 기재하세요.</span></li>'+
     '<li><span class="ci">·</span><span>피해학생에 대한 진심 어린 사과와 피해 복구 노력을 기울이는 것이 바람직합니다.</span></li>'+
-    '<li><span class="ci">·</span><span>억울한 점이 있다면 <b>전담기구에 서면으로 의견 제출</b>이 가능합니다.</span></li>'+
+    '<li><span class="ci">·</span><span>억울한 점이 있다면 <b>학교에 서면으로 의견 제출</b>이 가능합니다.</span></li>'+
     '</ul>'+
     '<div class="ib or"><strong>사안 진행 중 자진 전학은 제한됩니다</strong><br>신고 접수부터 조치 이행 완료까지 <b>신청에 의한 학적 변동은 원칙적으로 불가</b>합니다.</div>'+
-    '<div class="ib"><strong>억울한 점이 있다면 이렇게 하세요</strong><br>· 사실과 다른 부분은 <b>전담기구에 서면으로 의견을 제출</b>하세요<br>· 목격자 진술이나 메시지 등 <b>반증 자료를 직접 제출</b>할 수 있습니다<br>· 쌍방 폭력이라면 <b>상대방을 별도로 신고</b>하는 것도 가능합니다<br>· 전담기구 심의 전에 의견서를 제출하면 심의 시 반영될 수 있습니다</div>'},
+    '<div class="ib"><strong>억울한 점이 있다면 이렇게 하세요</strong><br>· 사실과 다른 부분은 <b>학교에 서면으로 의견을 제출</b>하세요<br>· 목격자 진술이나 메시지 등 <b>반증 자료를 직접 제출</b>할 수 있습니다<br>· 쌍방 폭력이라면 <b>상대방을 별도로 신고</b>하는 것도 가능합니다</div>'},
 
-p_3:{title:'학교장 자체해결',col:'orange',
-  steps:['연락수신','사안조사','학교장 자체해결/심의','조치이행','사후지도'],act:2,
-  html:'<div class="ib gn"><strong>학생부 기재 여부가 달라집니다</strong><br>학교장 자체해결로 종결되면 <b>학교생활기록부에 기재되지 않습니다.</b><br>학교폭력대책심의위원회를 거치면 조치 종류에 따라 기재됩니다. 학교장 자체해결 요건 충족 여부를 먼저 확인하세요.</div>'+
-    '<div class="ib or"><strong>학교장 자체해결은 경미한 사안에만 적용됩니다.</strong><br>4가지 요건을 모두 충족하고 피해 보호자가 동의할 때만 가능합니다.</div>'+
+p_3:{title:'자체해결로 끝날 수 있다고 해요',col:'orange',
+  steps:['연락수신','사안조사','자체해결/심의','조치이행','사후지도'],act:2,
+  html:'<div class="ib gn"><strong>학생부 기재 여부가 달라집니다</strong><br>자체해결로 종결되면 <b>학교생활기록부에 기재되지 않습니다.</b><br>심의위원회를 거치면 조치 종류에 따라 기재됩니다.</div>'+
+    '<div class="ib or"><strong>자체해결은 경미한 사안에만 적용됩니다.</strong><br>4가지 요건을 모두 충족하고 피해 보호자가 동의할 때만 가능합니다.</div>'+
     '<p class="sh or">가해 측에서 할 수 있는 것</p>'+
     '<ul class="cl">'+
-    '<li><span class="ci">·</span><span>재산상 피해가 있다면 <b>즉각 복구하거나 복구 약속</b>을 하세요. 이것이 학교장 자체해결 요건 중 하나입니다.</span></li>'+
+    '<li><span class="ci">·</span><span>재산상 피해가 있다면 <b>즉각 복구하거나 복구 약속</b>을 하세요. 이것이 자체해결 요건 중 하나입니다.</span></li>'+
     '<li><span class="ci">·</span><span>진심 어린 <b>서면 사과</b>를 피해학생 측에 전달하세요. (학교를 통해, 직접 접촉은 자제)</span></li>'+
-    '<li><span class="ci">·</span><span>학교장 자체해결 후에도 <b>학교에서 별도 생활지도</b>를 받을 수 있습니다.</span></li>'+
+    '<li><span class="ci">·</span><span>자체해결 후에도 <b>학교에서 별도 생활지도</b>를 받을 수 있습니다.</span></li>'+
     '</ul>'+
-    '<div class="ib gn"><strong>학교장 자체해결 후 기억할 것</strong><br>학교장 자체해결로 종결되어도 동일한 학생에게 다시 폭력을 행사하면 <b>새로운 사안으로 처리</b>됩니다.<br>재산상 피해 복구를 약속하면 반드시 이행하세요.</div>'},
+    '<div class="ib gn"><strong>자체해결 후 기억할 것</strong><br>자체해결로 종결되어도 동일한 학생에게 다시 폭력을 행사하면 <b>새로운 사안으로 처리</b>됩니다.<br>재산상 피해 복구를 약속하면 반드시 이행하세요.</div>'},
 
-p_4:{title:'학교폭력대책심의위원회 — 가해 측 준비',col:'orange',
-  steps:['연락수신','사안조사','학교폭력대책심의위원회','조치이행','사후지도'],act:2,
-  html:'<div class="ib or"><strong>조치 결정에 영향을 미치는 요소</strong><br>학교폭력대책심의위원회는 가해학생의 반성 정도, 피해 복구 노력, 피해학생 의견 등을 종합해 조치를 결정합니다.</div>'+
+p_4:{title:'심의위원회 참석 준비',col:'orange',
+  steps:['연락수신','사안조사','심의위원회','조치이행','사후지도'],act:2,
+  html:'<div class="ib or"><strong>조치 결정에 영향을 미치는 요소</strong><br>심의위원회(학교폭력대책심의위원회)는 가해학생의 반성 정도, 피해 복구 노력, 피해학생 의견 등을 종합해 조치를 결정합니다.</div>'+
     '<p class="sh or">출석 전 준비할 것</p>'+
     '<ul class="cl">'+
     '<li><span class="ci">·</span><span>재산상 피해가 있다면 <b>복구 완료 또는 복구 약속</b>을 문서화해 가져가세요.</span></li>'+
     '<li><span class="ci">·</span><span>피해학생 측에 직접 연락하는 것은 <b>2호(접촉금지) 조치 위반</b>이 될 수 있습니다. 학교를 통해서만 소통하세요.</span></li>'+
     '<li><span class="ci">·</span><span>위원회 출석으로 인한 결석은 학교장이 인정하면 <b>출석으로 처리</b>됩니다.</span></li>'+
     '</ul>'+
-    '<div class="ib"><strong>결과 통보까지 최대 14일</strong><br>학교폭력대책심의위원회 의결 후 교육장은 <b>14일 이내</b>에 가해학생 및 보호자에게 서면으로 통보해야 합니다.<br>결과를 받은 날짜를 기록해 두세요. 불복 기간(90일)의 기산점이 됩니다. <span style="font-size:.82rem;color:var(--gray2)">(행정심판법 제27조)</span></div>'},
+    '<div class="ib"><strong>결과 통보까지 최대 14일</strong><br>심의위원회 의결 후 교육장은 <b>14일 이내</b>에 가해학생 및 보호자에게 서면으로 통보해야 합니다.<br>결과를 받은 날짜를 기록해 두세요. 이의신청 기간(90일)의 시작일이 됩니다.</div>'},
 
 p_5:{title:'조치(1~9호) 안내',col:'orange',
-  steps:['연락수신','사안조사','학교폭력대책심의위원회','조치이행','사후지도'],act:3,
-  html:'<div class="ib or"><strong>학교폭력대책심의위원회 의결에 따라 하나 또는 복수로 부과됩니다.</strong></div>'+
+  steps:['연락수신','사안조사','심의위원회','조치이행','사후지도'],act:3,
+  html:'<div class="ib or"><strong>심의위원회 의결에 따라 하나 또는 복수로 부과됩니다.</strong></div>'+
     '<table class="mg"><thead><tr><th>호수</th><th>조치명</th><th>내용</th><th>학생부 기재</th></tr></thead><tbody>'+
     '<tr><td>제1호</td><td>서면사과</td><td>피해학생에게 서면으로 사과</td><td>기재·삭제 가능</td></tr>'+
     '<tr><td>제2호</td><td>접촉·보복금지</td><td>피해학생 접근 금지 (인터넷 포함)</td><td>기재·삭제 가능</td></tr>'+
@@ -572,130 +563,28 @@ p_5:{title:'조치(1~9호) 안내',col:'orange',
     '<tr><td>제8호</td><td>전학</td><td>다른 학교로 강제 전학 (원복 불가)</td><td>졸업 후 4년</td></tr>'+
     '<tr><td>제9호</td><td>퇴학처분</td><td>의무교육(초·중학생)에는 미적용</td><td>졸업 후 4년</td></tr>'+
     '</tbody></table>'+
-    '<div class="ib"><strong>학생부 삭제 기준</strong><br>1~7호는 졸업 전 전담기구 심의를 통해 삭제 가능합니다 (재학 중 동일 학교급에서 2건 미만 등 요건 충족 시).<br>8·9호는 졸업 후 4년이 지나야 삭제됩니다.</div>'+
+    '<div class="ib"><strong>학생부 삭제 기준</strong><br>1~7호는 졸업 전 학교 심의를 통해 삭제 가능합니다 (재학 중 동일 학교급에서 2건 미만 등 요건 충족 시).<br>8·9호는 졸업 후 4년이 지나야 삭제됩니다.</div>'+
     '<div class="dday-wrap">'+
-    '<p>기한 계산기</p>'+
+    '<p>이의신청 기한 계산기</p>'+
     '<div class="dday-input">'+
-    '<span style="font-size:.88rem;color:var(--gray3)">조치 통보일</span>'+
+    '<span style="font-size:.88rem;color:var(--gray3)">결과 통보를 받은 날</span>'+
     '<input type="date" id="ddayInputP" onchange="calcDdayP()">'+
     '</div>'+
     '<div class="dday-result" id="ddayResultP"></div>'+
     '</div>'+
-    '<div class="ib or"><strong>조치를 거부·미이행하면?</strong><br>통보일로부터 3개월 내 미이행 시 학교장이 보고, 학교폭력대책심의위원회가 <b>추가 조치</b>를 부과할 수 있습니다.<br>제2호(접촉금지) 위반은 새로운 학교폭력 사안으로 접수됩니다.</div>'+
-    '<div class="ib or"><strong>학교생활기록부에 기재됩니다</strong><br>2~9호 조치는 학생부 "학교폭력 조치 상황관리"란에 기재됩니다.<br><b>제8호(전학)</b>는 졸업 후 4년이 지나야 삭제됩니다. 졸업 전 전담기구 심의를 통해 요건 충족 시 삭제 가능합니다.</div>'},
+    '<div class="ib or"><strong>조치를 거부·미이행하면?</strong><br>통보일로부터 3개월 내 미이행 시 학교장이 보고, 심의위원회가 <b>추가 조치</b>를 부과할 수 있습니다.<br>제2호(접촉금지) 위반은 새로운 학교폭력 사안으로 접수됩니다.</div>'+
+    '<div class="ib or"><strong>학교생활기록부에 기재됩니다</strong><br>2~9호 조치는 학생부 "학교폭력 조치 상황관리"란에 기재됩니다.<br><b>제8호(전학)</b>는 졸업 후 4년이 지나야 삭제됩니다.</div>'},
 
-p_6:{title:'불복절차',col:'orange',
-  steps:['연락수신','사안조사','학교폭력대책심의위원회','조치이행','불복'],act:4,
-  html:'<div class="ib or"><strong>불복 전에 이것을 먼저 고려하세요</strong><br>· 불복 과정에서 <b>학교·피해 측과의 관계가 악화</b>될 수 있습니다<br>· 집행정지를 신청하지 않으면 <b>조치는 심판 기간 중에도 계속 유효</b>합니다</div>'+
-    '<div class="ib or"><strong>교육장의 조치(1~9호)에 불복할 경우 행정심판을 청구할 수 있습니다.</strong></div>'+
+p_6:{title:'결과에 이의신청하기',col:'orange',
+  steps:['연락수신','사안조사','심의위원회','조치이행','이의신청'],act:4,
+  html:'<div class="ib or"><strong>이의신청 전에 이것을 먼저 고려하세요</strong><br>· 이의신청 과정에서 <b>학교·피해 측과의 관계가 악화</b>될 수 있습니다<br>· 집행정지를 신청하지 않으면 <b>조치는 심판 기간 중에도 계속 유효</b>합니다</div>'+
+    '<div class="ib or"><strong>결과에 이의가 있다면 이의신청(행정심판)을 할 수 있습니다.</strong></div>'+
     '<div class="tl">'+
-    '<div class="tli" data-icon="①"><div class="tp">처분을 안 날부터 90일 이내 / 처분일부터 180일 이내</div><div class="tt">행정심판 청구</div><div class="tb">해당 시·도교육청 행정심판위원회에 서면 청구합니다.</div></div>'+
-    '<div class="tli" data-icon="②"><div class="tp">접수 후 60일 이내 (30일 연장 가능)</div><div class="tt">심판 재결</div><div class="tb">행정심판위원회가 인용·기각·각하 등 재결을 내립니다.</div></div>'+
-    '<div class="tli" data-icon="③"><div class="tp">재결 후 90일 이내</div><div class="tt">행정소송 제기 (필요 시)</div><div class="tb">행정심판에서도 구제되지 않으면 법원에 행정소송을 제기할 수 있습니다.</div></div>'+
+    '<div class="tli" data-icon="①"><div class="tp">결과를 받은 날부터 90일 이내 / 처분일부터 180일 이내</div><div class="tt">이의신청(행정심판) 제출</div><div class="tb">해당 시·도교육청 행정심판위원회에 서면으로 제출합니다.</div></div>'+
+    '<div class="tli" data-icon="②"><div class="tp">접수 후 60일 이내 (30일 연장 가능)</div><div class="tt">심판 결과</div><div class="tb">행정심판위원회가 심리 후 결과를 내립니다.</div></div>'+
+    '<div class="tli" data-icon="③"><div class="tp">결과 후 90일 이내</div><div class="tt">행정소송 제기 (필요 시)</div><div class="tb">이의신청 결과에도 불복할 경우 법원에 행정소송을 제기할 수 있습니다.</div></div>'+
     '</div>'+
-    '<div class="ib">행정심판을 청구해도 <b>조치의 효력은 그대로 유지</b>됩니다.<br>조치를 정지하려면 <b>집행정지 신청</b>을 별도로 해야 하며, 이 경우 피해 관련 학생 보호자의 의견을 청취하게 됩니다.</div>'},
-
-t_1:{title:'학교폭력 인지 시 즉시 처리',col:'green',
-  steps:['인지·신고','학부모면담','사안조사','학교폭력대책심의위원회','사후지도'],act:0,
-  html:'<div class="ib gn"><strong>⚡ 신고 의무가 있습니다</strong><br>학교폭력을 인지한 교원은 지체 없이 학교에 보고할 의무가 있습니다.</div>'+
-    '<p class="sh gn">즉시 해야 할 일</p>'+
-    '<ul class="cl">'+
-    '<li><span class="ci">·</span><span>학교폭력 인지 즉시 <b>학교장 및 학교폭력 담당교사(책임교사)</b>에게 보고하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>피해학생에게 긴급한 신체 피해가 있으면 <b>즉시 병원 조치</b>를 취하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>피해학생이 요청하거나 필요한 경우 <b>가해학생과 즉시 분리</b>하도록 학교장에게 보고하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>인지한 내용을 <b>육하원칙에 따라 메모</b>해 두세요. (날짜, 장소, 관련 학생, 목격자, 내용)</span></li>'+
-    '<li><span class="ci">·</span><span>관련 학생들이 이야기를 맞추지 못하도록 <b>즉시 분리</b>하세요.</span></li>'+
-    '</ul>'+
-    '<div class="ib or">⚠️ <strong>하지 말아야 할 것</strong><br>• 학교폭력을 축소·은폐하거나 학교 내부적으로만 해결하려 해서는 안 됩니다.<br>• 관련 학생들이 있는 자리에서 함께 사실관계를 확인하는 것은 피하세요.<br>• 어느 쪽 편도 들지 말고 공정한 태도를 유지하세요.</div>'},
-
-t_2:{title:'학부모 면담 시 유의사항',col:'green',
-  steps:['인지·신고','학부모면담','사안조사','학교폭력대책심의위원회','사후지도'],act:1,
-  html:'<div class="ib gn"><strong>피해·가해 보호자를 같은 자리에서 면담하는 것은 피하세요.</strong></div>'+
-    '<p class="sh gn">면담 시 체크리스트</p>'+
-    '<ul class="cl">'+
-    '<li><span class="ci">·</span><span>면담 내용을 <b>기록</b>으로 남기세요. (날짜, 참석자, 주요 내용)</span></li>'+
-    '<li><span class="ci">·</span><span>상대방 학생의 개인정보를 <b>함부로 공개하지 마세요</b>. 비밀 누설은 법적 처벌 대상입니다.</span></li>'+
-    '<li><span class="ci">·</span><span>보호자가 흥분하더라도 <b>공정하고 침착하게</b> 대응하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>절차와 일정(조사, 전담기구 심의, 결과 통보 등)을 <b>정확히 안내</b>하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>자체 합의를 유도하거나 강요하지 마세요. <b>학교장 자체해결도 강요할 수 없습니다.</b></span></li>'+
-    '</ul>'+
-    '<div class="ib gn"><strong>합의해도 절차는 계속 진행합니다</strong><br>당사자 간 합의 여부와 관계없이 학교폭력 사안처리 절차는 반드시 진행해야 합니다.</div>'},
-
-t_3:{title:'사안조사 참여',col:'green',
-  steps:['인지·신고','학부모면담','사안조사','학교폭력대책심의위원회','사후지도'],act:2,
-  html:'<div class="ib gn"><strong>사안조사는 전담기구 또는 전담조사관이 진행하며, 생활부장은 협력자 역할을 합니다.</strong></div>'+
-    '<ul class="cl">'+
-    '<li><span class="ci">·</span><span>관련 학생 및 목격학생 <b>확인서 작성을 보조</b>하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>CCTV, 메시지 캡처, 주변 학생 진술 등 <b>객관적 증거 확보</b>에 협력하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>신고 접수 후 <b>14일 이내</b>에 조사·전담기구 심의가 완료되어야 합니다.</span></li>'+
-    '<li><span class="ci">·</span><span>사안조사 보고서 작성에 필요한 <b>생활부장 소견</b>을 성실히 작성하세요.</span></li>'+
-    '</ul>'+
-    '<div class="ib or">⚠️ <strong>관련 학생이 자해·극단적 행동을 보이면</strong><br>즉시 학교장과 교육지원청에 보고하고, 전문 상담기관(117, Wee센터 등)과 연계하세요.</div>'},
-
-t_4:{title:'학교폭력대책심의위원회 이후 사후지도',col:'green',
-  steps:['인지·신고','학부모면담','사안조사','학교폭력대책심의위원회','사후지도'],act:4,
-  html:'<div class="ib gn"><strong>조치 이행 이후 관계 회복과 재발 방지를 위한 지속적인 관심이 필요합니다.</strong></div>'+
-    '<ul class="cl">'+
-    '<li><span class="ci">·</span><span>피해학생의 등교 후 <b>심리적 상태와 적응 여부</b>를 지속적으로 관찰하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>가해학생의 <b>조치 이행 여부</b>(봉사, 특별교육 등)를 확인하고 학교장에게 보고하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>관련 학생 모두가 <b>동의한 경우</b>에 한해 관계회복 프로그램을 권유할 수 있습니다.</span></li>'+
-    '<li><span class="ci">·</span><span>가해학생이 제2호(접촉금지) 조치를 위반하지 않도록 <b>주의 깊게 관찰</b>하세요.</span></li>'+
-    '<li><span class="ci">·</span><span>사안처리 과정에서 알게 된 내용은 <b>비밀 유지 의무</b>가 있습니다.</span></li>'+
-    '</ul>'},
-
-a_1:{title:'전체 사안처리 절차 흐름',col:'purple',
-  steps:['인지·접수','사안조사','전담기구심의','학교장 자체해결/심의위','조치이행','사후지도'],act:1,
-  html:'<div class="tl">'+
-    '<div class="tli" data-icon="1"><div class="tp">즉시</div><div class="tt">학교폭력 접수 및 초기대응</div><div class="tb">신고 접수 → 학교폭력제로센터(교육지원청) 보고 → 피해학생 분리·긴급조치(필요 시)</div></div>'+
-    '<div class="tli" data-icon="2"><div class="tp">접수 후 14일 이내</div><div class="tt">사안조사</div><div class="tb">전담기구 또는 학교폭력 전담조사관이 관련 학생·목격자 조사, 사안조사보고서 작성</div></div>'+
-    '<div class="tli" data-icon="3"><div class="tp">14일 이내 완료</div><div class="tt">전담기구 심의</div><div class="tb">학교장 자체해결 요건 해당 여부 심의 → 학교장 자체해결 또는 학교폭력대책심의위원회 개최 요청 결정 (필요 시 7일 연장 가능)</div></div>'+
-    '<div class="tli" data-icon="4"><div class="tp">요청 후 21일 이내 (7일 연장 가능)</div><div class="tt">학교폭력대책심의위원회 개최</div><div class="tb">교육지원청 학교폭력대책심의위원회 개최 → 피해·가해학생 조치 의결</div></div>'+
-    '<div class="tli" data-icon="5"><div class="tp">의결 후 14일 이내</div><div class="tt">조치 결정 통보 및 이행</div><div class="tb">교육장이 서면 통보 → 학교장이 조치 이행 협조 → 이행 결과 교육(지원)청 보고</div></div>'+
-    '<div class="tli" data-icon="6"><div class="tp">이후 지속</div><div class="tt">사후지도</div><div class="tb">피해학생 심리 회복 모니터링, 가해학생 재발 방지 지도, 관계회복 프로그램 운영</div></div>'+
-    '</div>'},
-
-a_2:{title:'학교장 자체해결 절차',col:'purple',
-  steps:['인지·접수','사안조사','전담기구심의','학교장 자체해결','보고'],act:2,
-  html:'<div class="ib pu"><strong>학교장 자체해결 요건 4가지 — 모두 충족해야 합니다</strong></div>'+
-    '<ul class="cl">'+
-    '<li><span class="ci">1️⃣</span><span>2주 이상 신체·정신 치료를 요하는 진단서를 <b>발급받지 않은</b> 경우</span></li>'+
-    '<li><span class="ci">2️⃣</span><span>재산상 피해가 없거나, <b>즉각 복구</b>되거나 복구 약속이 있는 경우</span></li>'+
-    '<li><span class="ci">3️⃣</span><span>학교폭력이 <b>지속적이지 않은</b> 경우</span></li>'+
-    '<li><span class="ci">4️⃣</span><span>신고·진술에 대한 <b>보복행위가 아닌</b> 경우</span></li>'+
-    '</ul>'+
-    '<div class="tl">'+
-    '<div class="tli" data-icon="①"><div class="tt">피해학생·보호자 서면 동의 확인</div><div class="tb">학교폭력대책심의위원회 개최 요구 의사 확인서 제출 받기 (강요 절대 금지)</div></div>'+
-    '<div class="tli" data-icon="②"><div class="tt">전담기구 심의</div><div class="tb">요건 해당 여부 협의·확인</div></div>'+
-    '<div class="tli" data-icon="③"><div class="tt">학교장 자체해결 결재</div><div class="tb">사안조사보고서, 전담기구 심의결과, 동의서 첨부</div></div>'+
-    '<div class="tli" data-icon="④"><div class="tt">교육(지원)청 보고 및 관련자 통보</div><div class="tb">학교장 자체해결 결과를 교육지원청에 보고, 관련 학생 보호자에게 통보</div></div>'+
-    '</div>'+
-    '<div class="ib or">학교는 신고 접수 후 <b>14일 이내</b>에 조사→전담기구 심의→학교장 자체해결 여부 결정 또는 학교폭력대책심의위원회 요청까지 완료해야 합니다.</div>'},
-
-a_3:{title:'학교폭력대책심의위원회 개최 요청',col:'purple',
-  steps:['인지·접수','사안조사','전담기구심의','학교폭력대책심의위원회','조치이행'],act:3,
-  html:'<div class="ib pu"><strong>학교폭력대책심의위원회 개최 요청 제출 서류</strong></div>'+
-    '<ul class="cl">'+
-    '<li><span class="ci">·</span><span>학교폭력 전담기구 심의결과 보고서 〈양식 3-1〉</span></li>'+
-    '<li><span class="ci">·</span><span>학교폭력 사안조사 보고서 〈양식 2-4〉</span></li>'+
-    '<li><span class="ci">·</span><span>관련 학생 및 목격학생 확인서 〈양식 2-1〉</span></li>'+
-    '<li><span class="ci">·</span><span>보호자 확인서 〈양식 2-2〉</span></li>'+
-    '<li><span class="ci">·</span><span>긴급조치 보고서(해당 시) 〈양식 2-3〉</span></li>'+
-    '<li><span class="ci">·</span><span>피해·가해 관련 학생 보호자 개인정보 〈양식 2-5〉</span></li>'+
-    '</ul>'+
-    '<div class="ib pu"><strong>접수 후 사례회의가 열립니다</strong><br>교육지원청은 공문 접수 후 <b>사례회의</b>를 개최합니다. 사안의 완결성을 확인하고, 필요 시 <b>보완조사</b>나 수사의뢰를 결정합니다.<br>학교는 보완조사 요청에 적극 협조해야 합니다.</div>'+
-    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">서류 보안 주의사항 <span class="ar">▼</span></button><div class="acc-b">공문 발송 시 보안에 각별히 유의해야 합니다. 학생 개인정보가 포함된 문서는 암호화 등 보안 처리를 하세요.</div></div>'},
-
-a_4:{title:'긴급조치와 학생 분리',col:'purple',
-  steps:['인지·접수','긴급조치','심의위추인','조치이행','사후지도'],act:1,
-  html:'<div class="ib pu"><strong>피해학생 보호와 가해학생 선도가 긴급하다고 인정되면 학교장이 선조치 후 학교폭력대책심의위원회의 추인을 받을 수 있습니다.</strong></div>'+
-    '<p class="sh pu">학교장이 할 수 있는 긴급조치</p>'+
-    '<ul class="cl">'+
-    '<li><span class="ci">·</span><span><b>피해학생 분리</b>: 학교폭력 인지 즉시 가해자와 피해학생을 분리해야 합니다 (의무)</span></li>'+
-    '<li><span class="ci">·</span><span><b>가해학생 우선 출석정지</b>: 즉시 부과할 수 있는 제6호 조치 (기간은 심의위 결정 시까지)</span></li>'+
-    '<li><span class="ci">·</span><span><b>학급교체</b>: 피해학생 요청 시 전담기구 심의를 거쳐 가해학생에게 제7호 조치 가능</span></li>'+
-    '<li><span class="ci">·</span><span>긴급조치 후 <b>즉시 학교폭력대책심의위원회에 보고</b>하여 추인을 받아야 합니다</span></li>'+
-    '</ul>'+
-    '<div class="ib or">가해학생이 긴급조치를 거부·회피하면, 학교장은 <b>초·중등교육법에 따라 징계</b>해야 합니다.</div>'}
+    '<div class="ib">이의신청을 해도 <b>조치의 효력은 그대로 유지</b>됩니다.<br>조치를 정지하려면 <b>집행정지 신청</b>을 별도로 해야 합니다.</div>'}
 };
 
 var colMap={blue:'var(--blue2)',orange:'var(--orange)',green:'var(--green)',purple:'var(--purple)'};
@@ -765,9 +654,9 @@ function calcDday(){
   base.setHours(0,0,0,0);
   var today=new Date(); today.setHours(0,0,0,0);
   var limits=[
-    {label:'조사 완료 기한 (14일)',days:14},
-    {label:'학교폭력대책심의위원회 요청 기한 (14일)',days:14},
-    {label:'기한 연장 시 (21일)',days:21}
+    {label:'진단서 제출 가능 기한 — 조사 완료 전까지 (14일)',days:14},
+    {label:'의견서 제출 가능 기한 — 심의 전까지 (14일)',days:14},
+    {label:'이의신청(행정심판) 기한 — 결과 수령 후 (90일)',days:90}
   ];
   res.innerHTML=limits.map(function(l){
     var deadline=new Date(base); deadline.setDate(deadline.getDate()+l.days);
@@ -799,8 +688,8 @@ function calcDdayP(){
   var base=new Date(inp.value); base.setHours(0,0,0,0);
   var today=new Date(); today.setHours(0,0,0,0);
   var limits=[
-    {label:'조치 이행 기한 (3개월)',days:90},
-    {label:'행정심판 청구 기한 (90일)',days:90}
+    {label:'이의신청(행정심판) 기한 (90일)',days:90},
+    {label:'행정소송 기한 (180일)',days:180}
   ];
   res.innerHTML=limits.map(function(l){
     var deadline=new Date(base); deadline.setDate(deadline.getDate()+l.days);
@@ -819,8 +708,8 @@ function calcDdayP6(){
   var base=new Date(inp.value); base.setHours(0,0,0,0);
   var today=new Date(); today.setHours(0,0,0,0);
   var limits=[
-    {label:'행정심판 청구 기한 (90일)',days:90},
-    {label:'처분일 기준 기한 (180일)',days:180}
+    {label:'이의신청(행정심판) 기한 (90일)',days:90},
+    {label:'처분일 기준 이의신청 기한 (180일)',days:180}
   ];
   res.innerHTML=limits.map(function(l){
     var deadline=new Date(base); deadline.setDate(deadline.getDate()+l.days);
@@ -904,26 +793,26 @@ function showDiagRes(){
   var lv, lt, ld, detail, nextBtn;
 
   if(fails.length===0){
-    lv='ok'; lt='학교장 자체해결 대상일 수 있습니다';
-    ld='4가지 요건을 모두 충족합니다. 피해 관련 학생 보호자가 동의하면 학교폭력대책심의위원회 없이 학교에서 종결할 수 있습니다.';
+    lv='ok'; lt='학교장 자체해결로 처리될 가능성이 높습니다';
+    ld='4가지 요건을 모두 충족합니다. 피해 보호자가 동의하면 심의위원회 없이 학교에서 종결할 수 있습니다.';
     detail=
       '<div class="ib gn"><strong>동의 전 반드시 확인하세요</strong><br>'+
-      '학교장 자체해결에 동의하면 같은 사안으로 학교폭력대책심의위원회를 <b>다시 요청할 수 없습니다.</b><br>'+
-      '동의하지 않아도 됩니다. 학교폭력대책심의위원회를 요청할 권리가 있습니다.</div>';
-    nextBtn='<button class="btn btn-p" onclick="goDet(\'v\',\'3\')">학교장 자체해결 상세 안내 보기</button>';
+      '자체해결에 동의하면 같은 사안으로 심의위원회를 <b>다시 요청할 수 없습니다.</b><br>'+
+      '동의하지 않아도 됩니다. 심의위원회를 요청할 권리가 있습니다.</div>';
+    nextBtn='<button class="btn btn-p" onclick="goDet(\'v\',\'3\')">자체해결 상세 안내 보기</button>';
   } else {
-    lv='danger'; lt='학교장 자체해결 대상이 아닙니다';
-    ld='아래 요건 중 하나 이상에 해당하므로 반드시 학교폭력대책심의위원회에서 처리됩니다.';
+    lv='danger'; lt='심의위원회로 진행될 가능성이 높습니다';
+    ld='아래 요건 중 하나 이상에 해당하므로 심의위원회에서 처리될 수 있습니다.';
     detail=
       '<div style="background:var(--white);border-radius:var(--r);padding:16px;box-shadow:var(--sh);margin-bottom:14px">'+
       '<p style="font-size:.9rem;font-weight:800;margin-bottom:10px;color:#A03020">해당 요건</p>'+
       '<ul class="cl">'+
       fails.map(function(f){return '<li><span class="ci">·</span><span>'+f+'</span></li>';}).join('')+
       '</ul></div>'+
-      '<div class="ib"><strong>학교폭력대책심의위원회로 진행됩니다</strong><br>'+
-      '학교는 신고 접수 후 <b>14일 이내</b>에 전담기구 심의를 거쳐 학교폭력대책심의위원회 개최를 요청해야 합니다.<br>'+
-      '학교폭력대책심의위원회는 요청 후 <b>21일 이내</b>에 개최됩니다.</div>';
-    nextBtn='<button class="btn btn-p" onclick="goDet(\'v\',\'4\')">학교폭력대책심의위원회 상세 안내 보기</button>';
+      '<div class="ib"><strong>심의위원회(학교폭력대책심의위원회)로 진행됩니다</strong><br>'+
+      '학교는 신고 접수 후 <b>14일 이내</b>에 심의위원회 개최를 요청해야 합니다.<br>'+
+      '심의위원회는 요청 후 <b>21일 이내</b>에 개최됩니다.</div>';
+    nextBtn='<button class="btn btn-p" onclick="goDet(\'v\',\'4\')">심의위원회 상세 안내 보기</button>';
   }
 
   document.getElementById('diag-area').innerHTML=
@@ -933,7 +822,7 @@ function showDiagRes(){
     '</div>'+
     detail+
     '<div class="nav" style="margin-bottom:14px">'+nextBtn+'</div>'+
-    '<div class="ib or" style="font-size:.9rem">이 결과는 참고용이며 최종 판단은 학교 전담기구에서 결정합니다.</div>'+
+    '<div class="ib or" style="font-size:.9rem">이 결과는 참고용이며, 최종 결정은 학교 전담기구가 합니다. 궁금한 점은 학교 생활부장에게 문의하세요.</div>'+
     '<div class="nav" id="dres-nav"></div>';
   // 버튼을 DOM으로 안전하게 삽입 (따옴표 충돌 없음)
   setTimeout(function(){
