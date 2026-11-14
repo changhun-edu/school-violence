@@ -295,6 +295,9 @@ header a:active{opacity:.65}
   .role-btn .ico{font-size:1.85rem}
   .btn{padding:10px 14px;font-size:.95rem}
   }
+/* 학교 연장통 바로가기로 찾아온 자리 표시 */
+.qfind{animation:qfind 1.2s 3;border-radius:12px;scroll-margin-top:90px}
+@keyframes qfind{0%,40%{box-shadow:0 0 0 4px rgba(58,99,153,.45)}100%{box-shadow:0 0 0 0 rgba(58,99,153,0)}}
 </style>
 </head>
 <body>
@@ -500,6 +503,42 @@ window.addEventListener('load',function(){
     showSc('s-home');
   }
 });
+/* 학교 연장통 바로가기(?q=낱말): 단계별 상세 안내에 있는 말이면 그 단계를 열고,
+   아니면 그 말이 있는 화면(처음·역할 선택·자가 점검)을 열어 접힌 질문은 펴서 표시합니다.
+   ?q= 는 위의 ‘새로고침 복원’이 주소에서 지웁니다. 뒤로가기는 첫 화면으로. */
+var FIND_Q='';   /* 주소의 ?q= 는 ‘새로고침 복원’보다 먼저 읽어 둡니다 */
+try{ FIND_Q=(new URLSearchParams(location.search).get('q')||'').trim(); }catch(e){}
+window.addEventListener('load',function(){
+  var q=FIND_Q;
+  if(!q) return;
+  try{ history.replaceState({screen:'s-home'},'',location.pathname); }catch(e){}
+  var norm=function(t){ return String(t).toLowerCase().replace(/<[^>]+>/g,'').replace(/\s+/g,''); };
+  var words=q.split(/\s+/).filter(function(w){ return w.length>=2; }).sort(function(a,b){ return b.length-a.length; });
+  var tries=[norm(q)].concat(words.map(norm)).filter(function(w,i,a){ return w&&a.indexOf(w)===i; });
+  function mark(el){ if(!el) return; setTimeout(function(){ el.scrollIntoView({block:'center'}); el.classList.add('qfind'); setTimeout(function(){ el.classList.remove('qfind'); },4000); },350); }
+  function deepest(root,qn){ var hit=null,w=document.createTreeWalker(root,NodeFilter.SHOW_ELEMENT),n;
+    while((n=w.nextNode())) if(!/^(SCRIPT|STYLE|INPUT|TEXTAREA|SELECT|OPTION)$/.test(n.tagName)&&norm(n.textContent).indexOf(qn)>=0&&(!hit||hit.contains(n))) hit=n; return hit; }
+  setTimeout(function(){
+    var keys=Object.keys(D);
+    for(var i=0;i<tries.length;i++){
+      var qn=tries[i], k=null, j;
+      /* ① 단계별 상세: 제목 먼저, 그다음 본문 */
+      for(j=0;j<keys.length&&!k;j++) if(norm(D[keys[j]].title).indexOf(qn)>=0) k=keys[j];
+      for(j=0;j<keys.length&&!k;j++) if(norm(D[keys[j]].html+' '+D[keys[j]].steps.join(' ')).indexOf(qn)>=0) k=keys[j];
+      if(k){ var m=k.split('_'); goDet(m[0],m[1]); var body=document.getElementById('det-body'); mark((deepest(body,qn)||body).closest('tr, li, p, .card, div')); return; }
+      /* ② 화면 글 */
+      var scs=['s-home','s-v-sel','s-p-sel','s-b-sel','s-diag'];
+      for(j=0;j<scs.length;j++){
+        var sc=document.getElementById(scs[j]); if(!sc) continue;
+        var hit=deepest(sc,qn); if(!hit) continue;
+        if(scs[j]!=='s-home') goSc(scs[j]);
+        var acc=hit.closest('.acc'); if(acc){ var h=acc.querySelector('.acc-h'); if(h&&!h.classList.contains('open')) toggleAcc(h); }
+        mark(acc||hit.closest('li, p, .card, div')||hit); return;
+      }
+    }
+  },60);
+});
+
 function toggleAcc(btn){
   btn.classList.toggle('open');
   btn.nextElementSibling.classList.toggle('open');
