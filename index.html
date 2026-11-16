@@ -648,7 +648,7 @@ window.addEventListener('load',function(){
       var scs=['s-home','s-v-sel','s-p-sel','s-b-sel','s-w-sel','s-dis','s-type','s-diag'];
       for(j=0;j<scs.length;j++){
         var sc=document.getElementById(scs[j]); if(!sc) continue;
-        var hit=deepest(sc,qn); if(!hit) continue;
+        var hit=deepest(sc,qn); if(!hit||hit.closest('button:not(.acc-h)')) continue;   /* 다른 화면으로 가는 단추 글씨는 건너뜀 */
         if(scs[j]!=='s-home') goSc(scs[j]);
         var acc=hit.closest('.acc'); if(acc){ var h=acc.querySelector('.acc-h'); if(h&&!h.classList.contains('open')) toggleAcc(h); }
         mark(acc||hit.closest('li, p, .card, div')||hit); return;
