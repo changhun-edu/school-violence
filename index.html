@@ -317,6 +317,48 @@ header a:active{opacity:.65}
   .role-btn .ico{font-size:1.85rem}
   .btn{padding:10px 14px;font-size:.95rem}
   }
+/* ── 검색 ── */
+header{padding-left:56px;padding-right:56px}
+.hd-srch{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.45);background:rgba(255,255,255,.12);color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background .18s}
+.hd-srch:hover{background:rgba(255,255,255,.26)}
+.home-srch{background:var(--white);border-radius:var(--r);padding:16px 16px 12px;box-shadow:var(--sh);margin-bottom:22px}
+.srch{display:flex;gap:8px}
+.srch input{flex:1;min-width:0;padding:12px 14px;border:2px solid var(--sky2);border-radius:10px;font-size:1rem;
+  font-family:inherit;color:var(--dark);background:#fff;-webkit-appearance:none;appearance:none}
+.srch input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(58,99,153,.15)}
+.srch-go{flex-shrink:0;padding:0 18px;border:none;border-radius:10px;background:#2E74C0;color:#fff;font-weight:700;
+  font-size:.98rem;font-family:inherit;cursor:pointer}
+.srch-go:hover{background:#1A5BA0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:1.5px solid var(--sky2);background:#F4F8FC;color:var(--blue2);border-radius:16px;padding:5px 12px;
+  font-size:.86rem;font-weight:700;font-family:inherit;cursor:pointer}
+.chip:hover{background:var(--sky);border-color:var(--blue)}
+.sr-count{font-size:.9rem;color:var(--gray3);margin:14px 2px 10px;line-height:1.5}
+.sr-item{display:block;width:100%;text-align:left;background:var(--white);border:1.5px solid var(--gray1);
+  border-left:5px solid var(--gold);border-radius:10px;padding:12px 14px;margin-bottom:9px;cursor:pointer;
+  font-family:inherit;color:var(--dark);box-shadow:0 1px 4px rgba(0,0,0,.04);transition:border-color .18s,background .18s}
+.sr-item:hover{background:#F7FAFD;border-color:var(--sky2)}
+.sr-item.v{border-left-color:var(--blue)}.sr-item.p{border-left-color:var(--orange)}
+.sr-item.b{border-left-color:var(--green)}.sr-item.w{border-left-color:var(--purple)}
+.sr-path{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;font-size:.78rem;color:var(--gray3);margin-bottom:5px}
+.sr-tag{font-weight:800;border-radius:4px;padding:1px 7px;background:var(--lemon);color:var(--gold)}
+.sr-item.v .sr-tag{background:#EEF4FB;color:var(--blue)}.sr-item.p .sr-tag{background:#FBF2EC;color:var(--orange)}
+.sr-item.b .sr-tag{background:#EAF6F0;color:var(--green)}.sr-item.w .sr-tag{background:#F1EDFA;color:var(--purple)}
+.sr-head{display:block;font-size:.98rem;font-weight:800;color:var(--blue2);line-height:1.45;margin-bottom:3px;word-break:keep-all}
+.sr-snip{display:block;font-size:.9rem;color:var(--gray3);line-height:1.6;word-break:keep-all}
+.sr-item mark,.sr-snip mark{background:#FFE99A;color:var(--dark);border-radius:3px;padding:0 1px}
+.sr-empty{background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--sh);font-size:.94rem;line-height:1.7;color:var(--gray3)}
+.sr-empty b{color:var(--dark)}
+.sr-note{font-size:.86rem;color:var(--orange);background:#FBF2EC;border-radius:8px;padding:8px 12px;margin-bottom:10px;line-height:1.5}
+@media(max-width:480px){
+  header{padding-left:48px;padding-right:48px}
+  .hd-srch{right:8px;width:36px;height:36px}
+  .hd-srch svg{width:19px;height:19px}
+  .srch-go{padding:0 14px}
+}
+@media print{ .hd-srch,.home-srch,#s-search .srch,#s-search .chips{display:none!important} }
 /* 학교 연장통 바로가기로 찾아온 자리 표시 */
 .qfind{animation:qfind 1.2s 3;border-radius:12px;scroll-margin-top:90px}
 @keyframes qfind{0%,40%{box-shadow:0 0 0 4px rgba(58,99,153,.45)}100%{box-shadow:0 0 0 0 rgba(58,99,153,0)}}
@@ -331,11 +373,19 @@ header a:active{opacity:.65}
     </div>
 
   </a>
+  <button class="hd-srch" onclick="openSearch()" aria-label="검색" title="검색"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></button>
 </header>
 
 <!-- 홈 -->
 <div class="screen active" id="s-home">
 <div class="wrap">
+  <div class="home-srch">
+    <form class="srch" onsubmit="event.preventDefault();searchSubmit('sq1')" role="search">
+      <input id="sq1" type="search" placeholder="궁금한 말 검색 (예: 생기부)" autocomplete="off" aria-label="안내 검색">
+      <button type="submit" class="srch-go" aria-label="검색">검색</button>
+    </form>
+    <div class="chips" id="home-chips"></div>
+  </div>
   <p class="stl">지금 어떤 상황이신가요?</p>
   <p style="font-size:.95rem;color:var(--gray3);margin-bottom:20px;line-height:1.6">갑작스러운 연락에 많이 당황하셨을 겁니다.<br>지금 상황에 맞는 절차를 차근차근 안내해 드리겠습니다.</p>
   <div class="role-grid-2">
@@ -368,6 +418,8 @@ header a:active{opacity:.65}
     <p style="font-size:.98rem;font-weight:800;color:var(--blue2);margin-bottom:12px">더 알아두면 좋은 안내</p>
     <button class="sit-btn" onclick="goSc('s-type')"><span class="sn" style="background:var(--gold)">?</span><span><span class="st">이것도 학교폭력인가요?</span><span class="sd">장난처럼 보여도 학교폭력이 될 수 있는 행동</span></span></button>
     <button class="sit-btn" onclick="goSc('s-dis')"><span class="sn" style="background:var(--purple)">+</span><span><span class="st">우리 아이에게 장애가 있어요</span><span class="sd">조사·심의 때 요청할 수 있는 도움과 지원기관</span></span></button>
+    <button class="sit-btn" onclick="goSc('s-help')"><span class="sn" style="background:var(--green)">☎</span><span><span class="st">도움받을 수 있는 곳</span><span class="sd">117·상담·법률 지원 기관 연락처</span></span></button>
+    <button class="sit-btn" onclick="goSc('s-word')"><span class="sn" style="background:var(--blue)">가</span><span><span class="st">낯선 말 풀이</span><span class="sd">전담기구, 추인, 기재 유보, 집행정지 같은 말</span></span></button>
   </div>
   <footer class="site-foot">
     <dl class="sf-rows">
@@ -462,6 +514,8 @@ header a:active{opacity:.65}
   <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--gray1)">
     <p class="stl" style="font-size:1rem">자주 묻는 질문</p>
     <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">상대 쪽에서 먼저 신고했는데, 우리도 신고할 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 자녀가 겪은 일이 있다면 <b>따로 신고</b>할 수 있습니다.<br>먼저 신고했는지 여부와 관계없이, 학교는 신고된 내용을 각각 조사합니다.</div></div>
+    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">서로 상대가 먼저 했다고 하는데 분리는 어떻게 하나요? <span class="ar">▼</span></button><div class="acc-b">양쪽이 서로 피해를 주장하며 분리를 원하면 학교는 <b>양쪽 뜻을 모두 반영해 서로 분리</b>합니다. 분리는 징계가 아니라 다툼이 커지지 않도록 하는 보호 장치입니다.</div></div>
+    <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교가 아이들을 불러 화해시키겠다고 해요 <span class="ar">▼</span></button><div class="acc-b">학교는 사안을 줄이거나 <b>성급하게 화해를 권해서는 안 됩니다</b>. 관련 학생을 억지로 한자리에 모으는 것도 피해야 합니다.<br>서로 만나 이야기하는 <b>관계회복 프로그램</b>은 양쪽이 동의하고 준비가 되었을 때만 하며, 원하지 않으면 거절하거나 중간에 그만둘 수 있습니다.</div></div>
     <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">'관련 학생'이라고 하면 잘못한 것이 확정된 건가요? <span class="ar">▼</span></button><div class="acc-b">아닙니다. '피해 관련 학생', '가해 관련 학생'은 <b>조사·심의가 진행 중인 단계</b>에서 쓰는 표현입니다.<br>조치가 필요한지는 심의위원회 결정 또는 학교장 자체해결 절차를 통해 정해집니다.</div></div>
   </div>
 </div>
@@ -493,7 +547,8 @@ header a:active{opacity:.65}
     <li><span class="ci">·</span><span>Wee클래스 상담을 받을 수 있고, 필요하면 <b>Wee센터, 청소년상담복지센터, 병원 치료</b>로 이어 줍니다.</span></li>
     <li><span class="ci">·</span><span>신고한 학생이 피해 학생이기도 하다면, 보호를 위한 결석은 <b>출석으로 인정</b>될 수 있고 집에서 공부할 자료를 받을 수 있습니다.</span></li>
   </ul>
-  <div class="ib or"><strong>이런 일이 생기면 바로 학교에 알리세요</strong><br>· 단체대화방이나 SNS에 <b>"누가 신고했냐"</b>는 글, 위협 메시지가 올라옴<br>· 반에서 아이에 대한 <b>나쁜 소문</b>이 돌거나 친구들이 말을 걸지 않음<br>· 아이가 신고했다는 사실이 <b>새어 나감</b><br><b>지우기 전에 화면을 캡처</b>해 두세요. 신고에 대한 보복은 법으로 금지되어 있어 <b>새로운 학교폭력 사안으로 따로 접수</b>됩니다. 학교는 글을 지우게 하고, 학급 교육과 자리 배치 조정 등으로 대응합니다.</div>
+  <div class="ib or"><strong>이런 일이 생기면 바로 학교에 알리세요</strong><br>· 단체대화방이나 SNS에 <b>"누가 신고했냐"</b>는 글, 위협 메시지가 올라옴<br>· 반에서 아이에 대한 <b>나쁜 소문</b>이 돌거나 친구들이 말을 걸지 않음<br>· 아이가 신고했다는 사실이 <b>새어 나감</b><br><b>지우기 전에 화면을 캡처</b>해 두세요. 신고에 대한 보복은 법으로 금지되어 있어 <b>새로운 학교폭력 사안으로 따로 접수</b>됩니다. 학교는 글을 바로 지우게 하고, 학급 전체에 <b>학교폭력 예방·비밀유지 교육</b>을 하며, 담임 상담과 자리 배치 조정 등으로 대응합니다. 이름이 새어 나간 경우에는 <b>어디로, 어디까지</b> 퍼졌는지 확인하고 다시 생기지 않도록 대책을 세웁니다.</div>
+  <div class="ib"><strong>사안이 끝난 뒤에도 살핍니다</strong><br>학교는 상대 학생 측에 신고 학생을 <b>찾아내려 하거나, 비난 글을 올리거나, 온·오프라인으로 접촉</b>하면 처벌받는다는 점을 알립니다. 사안이 마무리된 뒤에도 담임교사와 전문상담교사가 아이가 학교생활에 잘 적응하는지, 2차 피해는 없는지 계속 살피도록 하고 있습니다. 걱정되는 모습이 보이면 언제든 알려 주세요.</div>
   <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--gray1)">
     <p class="stl" style="font-size:1rem">자주 묻는 질문</p>
     <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">목격한 아이도 조사를 받아야 하나요? <span class="ar">▼</span></button><div class="acc-b">학교는 사실 확인을 위해 <b>목격 학생 면담</b>을 할 수 있습니다. 이때도 다른 학생 눈에 띄지 않는 곳과 시간에 따로 이야기를 듣습니다.<br>걱정되는 점이 있으면 면담 전에 담임교사나 학교폭력 책임교사에게 미리 말씀해 주세요.</div></div>
@@ -515,7 +570,10 @@ header a:active{opacity:.65}
     <li><span class="ci">·</span><span>조사·전담기구·심의위원회에서 <b>특수교육 전문가</b>나 <b>장애인 전문가</b>의 도움을 요청할 수 있습니다. 전문가가 참석하기 어려우면 서면으로 의견을 낼 수 있습니다.</span></li>
     <li><span class="ci">·</span><span>학교 전담기구에서 보호자 의견을 듣는 자리가 있다면 <b>아이와 보호자가 함께</b> 참여해 의견을 말할 수 있습니다.</span></li>
     <li><span class="ci">·</span><span>사안처리 전 과정에서 <b>장애학생 지원 전문기관</b>의 도움을 받을 수 있습니다.</span></li>
+    <li><span class="ci">·</span><span>장애 학생이 관련된 사안은 학교가 <b>교육지원청과 특수교육지원센터(장애학생 인권지원단)</b>에도 함께 보고합니다. 필요한 지원을 함께 챙기기 위해서입니다.</span></li>
   </ul>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">조사(면담) 때 이렇게 해 달라고 요청하세요 <span class="ar">▼</span></button><div class="acc-b">아이 특성에 맞춰 면담 방식을 바꿔 달라고 요청할 수 있습니다. 예를 들면<br>· 어렵고 추상적인 질문 대신 <b>짧고 구체적인 질문</b><br>· 말로 표현하기 어려우면 <b>글로 쓰거나 그림·필담</b>으로 답하기 (청각장애는 입 모양만으로는 한계가 있습니다)<br>· 일이 일어난 순서를 정리하기 어려워하면 <b>충분한 시간</b> 주기<br>· 집중이 어렵거나 말이 오락가락해도 <b>다그치지 않고</b> 조용하고 편안한 곳에서 하기<br>· 면담하는 이유를 <b>쉬운 말로</b> 먼저 설명하기<br>특수학급 선생님과 함께 아이에게 맞는 방법을 정해 달라고 하셔도 됩니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">특수교육 전문가·장애인 전문가는 누구인가요? <span class="ar">▼</span></button><div class="acc-b"><b>특수교육 전문가</b>는 특수교육 교원, 특수교육 전문직, 특수교육지원센터 전담인력, 특수교육 관련 교수 등입니다. <b>장애인 전문가</b>는 장애인 관련 전문기관 담당자나 장애인 복지·인권·권익옹호 분야 전문가입니다.<br>이들은 아이의 인지·심리·행동 특성을 위원들에게 설명해 아이가 오해받지 않도록 돕습니다. 학교 전담기구가 자체해결이나 관계회복 프로그램을 논의할 때도 의견을 들을 수 있습니다.</div></div>
   <div class="ib"><strong>특수교육대상자가 아니어도 알려 주세요</strong><br>특수교육대상자로 선정되지 않았더라도 장애가 있다면 학교는 더 세심하게 살펴야 합니다. 아이의 <b>의사소통 방식, 집중 시간, 불안해하는 상황</b> 등을 학교에 미리 알려 주시면 조사 방법을 정하는 데 도움이 됩니다.</div>
   <p class="sh pu">피해 학생이 장애 학생이라면</p>
   <ul class="cl">
@@ -523,11 +581,19 @@ header a:active{opacity:.65}
     <li><span class="ci">·</span><span>상대 학생에 대한 조치를 정할 때 피해 학생의 장애 여부를 살피며, 조치가 <b>더 무거워질 수 있습니다</b>.</span></li>
     <li><span class="ci">·</span><span>상대 학생과 그 보호자가 받는 특별교육에는 <b>장애 이해·인식개선 내용</b>이 들어갑니다.</span></li>
   </ul>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">조치를 무겁게 할지 무엇을 보고 정하나요? <span class="ar">▼</span></button><div class="acc-b">심의위원회는 먼저 <b>장애를 이유로 한 학교폭력인지</b> 살핍니다. 그리고 다음을 확인해 조치를 얼마나 더 무겁게 할지 정합니다.<br>· <b>장애의 정도</b> — 특수교육이 필요한지, 학교생활에 큰 제약이 있는지, 이번 일로 장애가 더 심해질 수 있는지<br>· <b>상대 학생이 아이의 장애를 알았거나 알 수 있었는지</b> — 겉으로 드러나는 장애인지, 전부터 알던 사이인지, 특수학급 소속인지<br>· <b>장애와 직접 관련된 폭력인지</b> — 장애를 겨냥했거나 장애를 이용한 행동인지<br>이런 점을 보여 주는 자료나 설명이 있다면 심의 전에 학교에 내 두세요.</div></div>
   <div class="ib or"><strong>장애 학생이 겪기 쉬운 학교폭력</strong><br>장애를 흉내 내거나 놀리기, 보조기구를 숨기거나 망가뜨리기, 표현이 서툰 점을 이용해 시키거나 속이기, 놀이·활동에서 일부러 빼기도 학교폭력입니다.</div>
   <p class="sh pu">장애학생 지원 전문기관 (광주 지역)</p>
   <ul class="cl">
-    <li><span class="ci">·</span><span><b>발달장애인지원센터</b> ☎ <a href="tel:062-714-3352">062-714-3352</a></span></li>
-    <li><span class="ci">·</span><span><b>장애인인권옹호기관</b> ☎ <a href="tel:062-716-1633">062-716-1633</a></span></li>
+    <li><span class="ci">·</span><span><b>발달장애인지원센터</b> ☎ <a href="tel:062-714-3352">062-714-3352</a> <span style="color:var(--gray3);font-size:.88rem">(서구 상무시민로 103 상무비즈센터 302호)</span></span></li>
+    <li><span class="ci">·</span><span><b>장애인인권옹호기관</b> ☎ <a href="tel:062-716-1633">062-716-1633</a> <span style="color:var(--gray3);font-size:.88rem">(서구 상무대로 719 나라빌딩 2층)</span></span></li>
+  </ul>
+  <p class="sh pu">상대 학생이 장애 학생이었다면 (가해 관련 학생 보호자)</p>
+  <div class="ib">피해 학생이 장애 학생이면 자녀와 보호자가 받는 특별교육에 <b>장애인식개선 내용</b>이 반드시 들어가야 합니다. 광주 지역에서 이런 특별교육이 가능한 기관은 다음과 같습니다 (기관 사정에 따라 달라질 수 있으니 학교에 확인하세요).</div>
+  <ul class="cl">
+    <li><span class="ci">·</span><span><b>이음통합발달연구센터</b> ☎ <a href="tel:062-955-4580">062-955-4580</a> · <b>광주광역시일시청소년쉼터</b> ☎ <a href="tel:062-527-1318">062-527-1318</a></span></li>
+    <li><span class="ci">·</span><span><b>은빛마음성장연구소</b> ☎ <a href="tel:010-4220-7668">010-4220-7668</a> · <b>드나듬심리상담센터</b> ☎ <a href="tel:062-400-1288">062-400-1288</a></span></li>
+    <li><span class="ci">·</span><span><b>별빛마음심리교육 상담소</b> ☎ <a href="tel:062-531-4777">062-531-4777</a></span></li>
   </ul>
   <p style="font-size:.86rem;color:var(--gray3);line-height:1.6">다른 지역은 학교나 교육지원청 특수교육지원센터에 문의하세요.</p>
 </div>
@@ -545,8 +611,77 @@ header a:active{opacity:.65}
   <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">강요 <span class="ar">▼</span></button><div class="acc-b">빵 셔틀, <b>와이파이·게임·과제 대신 해 주기</b> 등 원하지 않는 심부름 시키기, 돈을 걷어 오라고 하기.</div></div>
   <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">따돌림 <span class="ar">▼</span></button><div class="acc-b">여럿이 한 친구를 일부러 계속 피하기, 비웃거나 면박 주기, 다른 친구와 어울리지 못하게 막기.</div></div>
   <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">사이버폭력 <span class="ar">▼</span></button><div class="acc-b">단체대화방·SNS에서 욕하거나 저격 글 올리기, 거짓 소문이나 사생활 퍼뜨리기, 대화방에서 빼거나 초대해 놓고 괴롭히기, 겁주는 메시지 반복해서 보내기.<br>증거는 <b>지우기 전에 캡처</b>해 두세요.</div></div>
-  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">성폭력 · 딥페이크 <span class="ar">▼</span></button><div class="acc-b">성적인 말이나 행동으로 수치심 주기, 동의 없이 몸을 찍거나 성적인 사진·영상 보내기.<br>인공지능으로 친구 얼굴이나 목소리를 합성한 <b>딥페이크</b>를 만들거나 퍼뜨리는 것도 해당됩니다. 성 관련 사안은 학교가 <b>수사기관에 바로 신고</b>합니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">성폭력 · 딥페이크 <span class="ar">▼</span></button><div class="acc-b">성적인 말이나 행동으로 수치심 주기, 동의 없이 몸을 찍거나 성적인 사진·영상 보내기.<br>인공지능으로 친구 얼굴이나 목소리를 합성한 <b>딥페이크</b>를 만들거나 퍼뜨리는 것은 물론, 갖고 있거나 사거나 저장하거나 보는 것도 해당됩니다. 성 관련 사안은 학교가 <b>수사기관에 바로 신고</b>합니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교 밖이나 학원에서 생긴 일도 해당되나요? <span class="ar">▼</span></button><div class="acc-b">네. 학교폭력은 <b>학교 안팎</b>에서 학생을 대상으로 생긴 일이면 해당됩니다. 학원·놀이터·온라인에서 생긴 일도 학교에 신고할 수 있습니다. 상대가 다른 학교 학생이면 두 학교가 함께 조사합니다.<br>상대가 <b>학생이 아닌 경우</b>(교사 포함)에도 피해 학생 보호를 위한 조치를 받을 수 있습니다. 다만 <b>아동학대</b>로 신고된 일은 아동학대 절차로 따로 처리될 수 있습니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">이런 모습이 보이면 살펴보세요 (피해 징후) <span class="ar">▼</span></button><div class="acc-b">· 학교 가기를 싫어하거나 이유 없이 결석·지각·조퇴가 잦아짐<br>· 몸에 상처나 멍이 자주 보이고, 물건을 자주 잃어버리거나 망가져 옴<br>· 표정이 어둡고 작은 일에도 크게 놀라거나 예민해짐<br>· 용돈을 자주 더 달라고 하거나 휴대전화 요금이 갑자기 늘어남<br>· 휴대전화를 불안하게 자주 확인하고, 부모가 보는 것을 몹시 싫어함<br>· 메시지를 본 뒤 당황하거나 갑자기 SNS 계정을 없앰<br>· "죽고 싶다" 같은 낙서나 말을 함<br>한 가지만으로 판단할 수는 없지만, 여러 모습이 겹치면 <b>다그치지 말고</b> 이야기를 들어 보고 담임교사와 상의하세요.</div></div>
   <div class="ib or" style="margin-top:14px">학교폭력인지 헷갈린다면 혼자 판단하지 말고 담임교사나 학교폭력 책임교사에게 먼저 상담하세요.</div>
+</div>
+</div>
+
+<!-- 도움받을 수 있는 곳 -->
+<div class="screen" id="s-help">
+<div class="wrap">
+  <p class="stl">도움받을 수 있는 곳</p>
+  <p style="margin-bottom:10px"><button class="btn btn-s" style="padding:6px 14px;font-size:.88rem" onclick="goSc('s-home')">← 처음으로</button></p>
+  <div class="ib">가장 먼저는 <b>담임교사나 학교폭력 책임교사</b>에게 알리세요. 아래 기관은 학교와 함께, 또는 급할 때 이용할 수 있습니다.</div>
+  <p class="sh bl">급할 때 신고</p>
+  <ul class="cl">
+    <li><span class="ci">·</span><span><b>117 학교폭력 신고센터</b> ☎ <a href="tel:117">117</a> · 문자 #0117 — 24시간, 긴급구조·수사 연계·법률상담·쉼터 연계</span></li>
+    <li><span class="ci">·</span><span><b>112 경찰</b> ☎ <a href="tel:112">112</a> — 긴급한 폭력 상황. 사이버범죄는 경찰청 사이버범죄 신고시스템도 이용할 수 있습니다.</span></li>
+    <li><span class="ci">·</span><span><b>학교전담경찰관(SPO)</b> — 학교마다 담당 경찰관이 있어 문자나 전화로 알릴 수 있습니다. 학교에 연락처를 물어보세요.</span></li>
+  </ul>
+  <p class="sh bl">상담과 회복</p>
+  <ul class="cl">
+    <li><span class="ci">·</span><span><b>청소년 상담 1388</b> ☎ <a href="tel:1388">1388</a> — 심리·학교·가정 문제 전화상담</span></li>
+    <li><span class="ci">·</span><span><b>Wee클래스·Wee센터</b> — 학교 상담실(Wee클래스)과 교육지원청 상담센터(Wee센터)</span></li>
+    <li><span class="ci">·</span><span><b>푸른나무재단</b> ☎ <a href="tel:1588-9128">1588-9128</a> — 학교폭력 전화·사이버 상담, 피해 학생·가족 지원, 화해·분쟁조정 지원</span></li>
+    <li><span class="ci">·</span><span><b>해바라기센터</b> — 성폭력 피해 상담·의료·수사 지원 (몸을 씻지 말고 방문)</span></li>
+    <li><span class="ci">·</span><span><b>교육지원청 학교폭력제로센터</b> — 피해 학생 심리상담·치료, 법률 지원, 관계회복 지원. 학교를 통해 요청합니다.</span></li>
+  </ul>
+  <p class="sh bl">법률 도움</p>
+  <ul class="cl">
+    <li><span class="ci">·</span><span><b>대한법률구조공단</b> ☎ <a href="tel:132">132</a> — 법률상담, 소송 대리 등</span></li>
+  </ul>
+  <p class="sh bl">광주 청소년상담복지센터</p>
+  <ul class="cl">
+    <li><span class="ci">·</span><span><b>광주광역시</b> ☎ <a href="tel:062-226-8181">062-226-8181</a> · <b>동구</b> ☎ <a href="tel:062-229-3308">062-229-3308</a> · <b>서구</b> ☎ <a href="tel:062-375-1388">062-375-1388</a></span></li>
+    <li><span class="ci">·</span><span><b>남구</b> ☎ <a href="tel:062-675-1388">062-675-1388</a> · <b>북구</b> ☎ <a href="tel:062-268-1388">062-268-1388</a> · <b>광산구</b> ☎ <a href="tel:062-951-1380">062-951-1380</a></span></li>
+  </ul>
+  <p style="font-size:.86rem;color:var(--gray3);line-height:1.6">다른 지역은 지역 청소년상담복지센터나 교육지원청에 문의하세요. 연락처는 바뀔 수 있으니 이용 전에 확인하세요.</p>
+</div>
+</div>
+
+<!-- 용어 풀이 -->
+<div class="screen" id="s-word">
+<div class="wrap">
+  <p class="stl">낯선 말 풀이</p>
+  <p style="margin-bottom:10px"><button class="btn btn-s" style="padding:6px 14px;font-size:.88rem" onclick="goSc('s-home')">← 처음으로</button></p>
+  <p class="sub">학교에서 듣게 되는 말을 쉽게 풀었습니다. 눌러서 펼쳐 보세요.</p>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">전담기구 (학교폭력 전담기구) <span class="ar">▼</span></button><div class="acc-b">학교 안에서 학교폭력 사안을 맡는 모임입니다. 교감, 책임교사, 전문상담교사, 보건교사, 학부모(3분의 1 이상)로 꾸립니다. 사실 확인, 자체해결 요건 심의, 졸업 전 학생부 삭제 심의 등을 합니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">심의위원회 (학교폭력대책심의위원회, 학폭위) <span class="ar">▼</span></button><div class="acc-b">교육지원청에 있는 위원회로, 학교폭력인지 판단하고 피해 학생 보호조치와 가해 학생 조치(1~9호)를 정합니다. 예전의 '학폭위'가 지금은 교육지원청 심의위원회입니다. 회의는 공개하지 않습니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교폭력제로센터 · 전담조사관 <span class="ar">▼</span></button><div class="acc-b">교육지원청에 있는 학교폭력 지원 조직입니다. 소속 <b>학교폭력 전담조사관</b>이 학교에 와서 사안을 조사하고, 피해 학생 지원·관계회복·법률 지원도 연결합니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교장 자체해결 <span class="ar">▼</span></button><div class="acc-b">가벼운 사안(4가지 요건 충족)에서 피해 학생 측이 동의하면 심의위원회 없이 학교에서 마무리하는 제도입니다. 가해 학생 학생부에 적히지 않습니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">분리 <span class="ar">▼</span></button><div class="acc-b">신고 직후 가해 관련 학생을 학교 안 별도 공간으로 최대 7일 떨어뜨려 두는 것입니다. 징계가 아니며, 피해 학생이 원하지 않으면 하지 않을 수 있습니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">긴급조치 · 추인 <span class="ar">▼</span></button><div class="acc-b">심의위원회 결정 전에 학교장이 급히 하는 조치입니다. 피해 학생에게는 상담·일시보호·치료 등, 가해 학생에게는 서면사과·출석정지·학급교체 등이 있습니다. 가해 학생 긴급조치는 나중에 심의위원회가 그대로 인정('추인')해야 확정됩니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">보호조치 · 가해학생 조치 <span class="ar">▼</span></button><div class="acc-b">보호조치는 피해 학생을 위한 조치(1·2·3·4·6호), 가해학생 조치는 1호 서면사과부터 9호 퇴학까지입니다. 학생부에는 가해학생 조치만 기재됩니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">기재 유보 <span class="ar">▼</span></button><div class="acc-b">1~3호 조치를 기간 안에 이행하고 정해진 기간 동안 다른 사안으로 조치를 받지 않으면 학생부에 적지 않는 것입니다. 한 번만 가능합니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">행정심판 · 행정소송 · 집행정지 <span class="ar">▼</span></button><div class="acc-b">결과에 불복하는 방법입니다. 행정심판은 시·도교육청 행정심판위원회에, 행정소송은 법원에 냅니다. 이렇게 해도 조치는 계속 효력이 있으며, 결과가 나올 때까지 조치를 멈추려면 따로 '집행정지'를 신청해야 합니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">관계회복 프로그램 · 분쟁조정 <span class="ar">▼</span></button><div class="acc-b">관계회복은 양쪽이 동의할 때 대화와 사과로 일상 회복을 돕는 과정입니다. 분쟁조정은 치료비·위자료 같은 손해배상 합의를 심의위원회나 교육감이 도와주는 제도입니다.</div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)">특별교육 (부가 특별교육) <span class="ar">▼</span></button><div class="acc-b">가해 학생이 받는 교육입니다. 5호 조치로 받는 특별교육은 학생부에 기재되고, 다른 조치에 덧붙여 받는 '부가 특별교육'은 기재되지 않습니다. 이때 보호자도 교육을 받아야 합니다.</div></div>
+</div>
+</div>
+
+<!-- 검색 -->
+<div class="screen" id="s-search">
+<div class="wrap">
+  <p class="stl">검색</p>
+  <form class="srch" onsubmit="event.preventDefault();searchSubmit('sq2')" role="search">
+    <input id="sq2" type="search" placeholder="예: 생기부 기재, 진단서, 분리" autocomplete="off" aria-label="안내 검색" oninput="searchTyping()">
+    <button type="submit" class="srch-go" aria-label="검색">검색</button>
+  </form>
+  <div class="chips" id="sr-chips"></div>
+  <p class="sr-count" id="sr-count"></p>
+  <div id="sr-list"></div>
 </div>
 </div>
 
@@ -599,62 +734,49 @@ function showSc(id){
   if(el) el.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
+/* 주소: 처음 화면은 주소 그대로, 나머지는 ?sc=화면 (검색은 &q=, 상세 안내는 &d=) */
+function scUrl(id,q){
+  if(id==='s-home') return location.pathname;
+  return location.pathname+'?sc='+id+(id==='s-search'&&q?'&q='+encodeURIComponent(q):'');
+}
 function goSc(id){
-  history.pushState({screen:id},'',location.pathname+(id!=='s-home'?'?sc='+id:''));
+  history.pushState({screen:id},'',scUrl(id));
   showSc(id);
 }
 function goRole(r){goSc('s-'+r+'-sel');}
 // 뒤로/앞으로 버튼 처리
 window.addEventListener('popstate',function(e){
-  var id=(e.state&&e.state.screen)?e.state.screen:'s-home';
+  var st=e.state||{}, id=st.screen||'s-home';
+  if(id==='s-det'){ if(!(st.det&&renderDet(st.det[0],st.det[1]))) id='s-home'; }
   showSc(id);
+  if(id==='s-search') runSearch(st.q||'',true);
 });
-// 새로고침 복원
+// 새로고침·공유 주소 복원 (학교 연장통 바로가기 ?q=낱말 포함)
 window.addEventListener('load',function(){
   var p=new URLSearchParams(location.search);
-  var sc=p.get('sc');
-  if(sc&&document.getElementById(sc)){
+  var sc=p.get('sc'), q=(p.get('q')||'').trim(), d=p.get('d')||'';
+  if(sc==='s-det'){
+    var m=d.split('_');
+    if(D[d]&&renderDet(m[0],m[1])){
+      history.replaceState({screen:'s-det',det:m},'',location.href); showSc('s-det'); return;
+    }
+    sc=null;
+  }
+  if(sc==='s-search'||(!sc&&q)){
+    history.replaceState({screen:'s-search',q:q},'',scUrl('s-search',q));
+    showSc('s-search');
+    var hits=runSearch(q,true);
+    /* 바로가기(?q=)로 왔는데 결과가 하나뿐이면 그 자리로 바로 이동 */
+    if(!sc&&q&&hits.length===1&&!hits.partial) goHit(hits[0]);
+    return;
+  }
+  if(sc&&sc!=='s-search'&&document.getElementById(sc)){
     history.replaceState({screen:sc},'',location.href);
     showSc(sc);
   } else {
     history.replaceState({screen:'s-home'},'',location.pathname);
     showSc('s-home');
   }
-});
-/* 학교 연장통 바로가기(?q=낱말): 단계별 상세 안내에 있는 말이면 그 단계를 열고,
-   아니면 그 말이 있는 화면(처음·역할 선택·자가 점검)을 열어 접힌 질문은 펴서 표시합니다.
-   ?q= 는 위의 ‘새로고침 복원’이 주소에서 지웁니다. 뒤로가기는 첫 화면으로. */
-var FIND_Q='';   /* 주소의 ?q= 는 ‘새로고침 복원’보다 먼저 읽어 둡니다 */
-try{ FIND_Q=(new URLSearchParams(location.search).get('q')||'').trim(); }catch(e){}
-window.addEventListener('load',function(){
-  var q=FIND_Q;
-  if(!q) return;
-  try{ history.replaceState({screen:'s-home'},'',location.pathname); }catch(e){}
-  var norm=function(t){ return String(t).toLowerCase().replace(/<[^>]+>/g,'').replace(/\s+/g,''); };
-  var words=q.split(/\s+/).filter(function(w){ return w.length>=2; }).sort(function(a,b){ return b.length-a.length; });
-  var tries=[norm(q)].concat(words.map(norm)).filter(function(w,i,a){ return w&&a.indexOf(w)===i; });
-  function mark(el){ if(!el) return; setTimeout(function(){ el.scrollIntoView({block:'center'}); el.classList.add('qfind'); setTimeout(function(){ el.classList.remove('qfind'); },4000); },350); }
-  function deepest(root,qn){ var hit=null,w=document.createTreeWalker(root,NodeFilter.SHOW_ELEMENT),n;
-    while((n=w.nextNode())) if(!/^(SCRIPT|STYLE|INPUT|TEXTAREA|SELECT|OPTION)$/.test(n.tagName)&&norm(n.textContent).indexOf(qn)>=0&&(!hit||hit.contains(n))) hit=n; return hit; }
-  setTimeout(function(){
-    var keys=Object.keys(D);
-    for(var i=0;i<tries.length;i++){
-      var qn=tries[i], k=null, j;
-      /* ① 단계별 상세: 제목 먼저, 그다음 본문 */
-      for(j=0;j<keys.length&&!k;j++) if(norm(D[keys[j]].title).indexOf(qn)>=0) k=keys[j];
-      for(j=0;j<keys.length&&!k;j++) if(norm(D[keys[j]].html+' '+D[keys[j]].steps.join(' ')).indexOf(qn)>=0) k=keys[j];
-      if(k){ var m=k.split('_'); goDet(m[0],m[1]); var body=document.getElementById('det-body'); mark((deepest(body,qn)||body).closest('tr, li, p, .card, div')); return; }
-      /* ② 화면 글 */
-      var scs=['s-home','s-v-sel','s-p-sel','s-b-sel','s-w-sel','s-dis','s-type','s-diag'];
-      for(j=0;j<scs.length;j++){
-        var sc=document.getElementById(scs[j]); if(!sc) continue;
-        var hit=deepest(sc,qn); if(!hit||hit.closest('button:not(.acc-h)')) continue;   /* 다른 화면으로 가는 단추 글씨는 건너뜀 */
-        if(scs[j]!=='s-home') goSc(scs[j]);
-        var acc=hit.closest('.acc'); if(acc){ var h=acc.querySelector('.acc-h'); if(h&&!h.classList.contains('open')) toggleAcc(h); }
-        mark(acc||hit.closest('li, p, .card, div')||hit); return;
-      }
-    }
-  },60);
 });
 
 function toggleAcc(btn){
@@ -672,12 +794,17 @@ v_1:{title:'신고 접수 직후 해야 할 일',col:'blue',
     '<li><span class="ci">·</span><span>신체 피해가 있다면 지금이라도 <b>병원에 가서 진단서</b>를 받으세요. 2주 이상 진단서가 있으면 학교장 자체해결 대상에서 제외됩니다.</span></li>'+
     '<li><span class="ci">·</span><span>메시지, 사진, 동영상 등 <b>증거를 별도 저장</b>해 두세요. 원본은 삭제하지 마세요.</span></li>'+
     '<li><span class="ci">·</span><span>보복이나 추가 피해가 있으면 학교에 <b>즉시 분리 조치</b>를 요청할 수 있습니다.</span></li>'+
-    '<li><span class="ci">·</span><span>성 관련 사안은 <b>예외 없이 학교가 수사기관에 바로 신고</b>합니다. 원하면 신원을 전면 비공개로 할 수 있습니다.</span></li>'+
+    '<li><span class="ci">·</span><span>성 관련 사안은 <b>예외 없이 학교가 수사기관에 바로 신고</b>합니다. 원하면 신원을 전면 비공개로 할 수 있습니다. 성폭력 피해라면 <b>몸을 씻지 말고</b> 그대로 병원이나 해바라기센터에 가세요.</span></li>'+
+    '<li><span class="ci">·</span><span>학교는 신고를 접수하면 바로 상대 학생에게 <b>접촉·협박·보복 금지(제2호)</b> 조치를 합니다. 이 조치는 처벌이 아니라 보호를 위한 것이어서 상대 학생 학생부에 적히지 않습니다.</span></li>'+
+    '<li><span class="ci">·</span><span>SNS·단체대화방에 퍼진 글이나 사진은 캡처해 둔 뒤 해당 서비스 회사에 <b>차단·삭제를 요청</b>할 수 있습니다. 딥페이크 등 촬영물은 나라에 <b>삭제 지원</b>을 요청할 수 있고, 비용은 가해 학생 측이 부담합니다.</span></li>'+
     '</ul>'+
+    '<div class="ib"><strong>경찰 신고와 학교 신고는 따로 진행됩니다</strong><br>경찰에 신고(형사 절차)해도 학교의 학교폭력 절차(교육·보호)는 멈추지 않고 그대로 진행됩니다. 둘 중 하나만 선택해야 하는 것이 아닙니다.</div>'+
     '<div class="ib or"><strong>신고 뒤 보복이나 2차 피해가 생기면</strong><br>· 단체대화방이나 SNS에 <b>신고자를 찾는 글</b>·위협 메시지가 올라옴<br>· 반에서 소문을 퍼뜨리거나 말을 걸지 않는 등 <b>따돌림</b>이 시작됨<br>· 아이 이름이 밖으로 <b>새어 나감</b><br>이런 일이 있으면 <b>지우기 전에 화면을 캡처</b>해 바로 학교에 알리세요. 신고에 대한 보복행위는 금지되어 있어 <b>새로운 사안으로 따로 접수</b>됩니다.</div>'+
     '<div class="ib pu"><strong>장애가 있는 아이라면</strong><br>조사 때 보호자·신뢰관계인 동석, 특수교육 전문가의 도움을 요청할 수 있습니다. <a href="javascript:void(0)" onclick="goSc(\'s-dis\')" style="color:var(--purple);font-weight:700">장애 학생 보호자 안내 보기 →</a></div>'+
     '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교폭력은 어디에 신고하나요? <span class="ar">▼</span></button><div class="acc-b">학교 전담기구(생활부장·학교폭력책임교사)에 우선 신고합니다.<br>급하면 <b>117(학교폭력 신고센터)</b>나 <b>112(경찰)</b>에도 신고할 수 있습니다.<br>신고를 받은 학교는 지체 없이 학교폭력제로센터(교육지원청)에 보고해야 합니다.</div></div>'+
-    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">상대 학생과 바로 분리할 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 학교장은 학교폭력 사건을 인지하면 <b>즉시 관련 학생을 서로 분리</b>할 의무가 있습니다.<br>피해 관련 학생이 긴급보호를 요청하면 심리상담·일시보호·치료·요양 등을 즉시 받을 수 있습니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">상대 학생과 바로 분리할 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 학교장은 학교폭력 사건을 알게 되면 <b>지체 없이 가해 관련 학생(교사 포함)을 분리</b>해야 합니다. 학교는 접수 후 <b>24시간 안에</b> 분리 방법을 정하고, 상대 학생을 학교 안 별도 공간으로 <b>최대 7일</b>(주말·공휴일 포함, 첫날 포함) 분리합니다.<br>다만 <b>피해 학생이 분리를 원하지 않거나</b>, 자체해결 요건을 모두 갖춘 가벼운 사안이거나, 이미 긴급조치로 분리된 경우 등에는 분리하지 않을 수 있습니다. 분리 전에 학교가 아이의 뜻을 물어봅니다.<br>피해 관련 학생이 긴급보호를 요청하면 심리상담·일시보호·치료·요양 등을 즉시 받을 수 있습니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">분리 기간이 끝나도 계속 떨어뜨려 달라고 할 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 피해 학생과 보호자가 요청하면 학교장은 학교 전담기구 심의를 거쳐 상대 학생에게 <b>출석정지나 학급교체 긴급조치</b>를 할 수 있습니다. 이때 출석정지 기간은 심의위원회 결정 때까지로 정할 수 있습니다.<br>두 학생의 학급이 다르면 수업은 각자 반에서 듣되 쉬는 시간·점심시간·이동 동선을 나누도록 학교가 계획을 세웁니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">교육지원청에서 조사관이 온다고 해요 <span class="ar">▼</span></button><div class="acc-b">교육지원청 <b>학교폭력제로센터</b>의 <b>학교폭력 전담조사관</b>이 학교를 방문해 학생과 보호자를 면담할 수 있습니다. 조사관은 사실을 확인하는 사람이며, 학교폭력인지 여부나 조치 수준을 미리 말해 주지 않습니다.<br>면담은 상담실 같은 독립된 곳에서 따로 이루어집니다. 면담 녹음은 서로 동의를 받고 하는 것이 원칙입니다.</div></div>'+
     '<div class="dday-wrap">'+
     '<p>학교 처리 기한 계산기</p>'+
     '<p style="font-size:.84rem;font-weight:400;color:var(--gray3);margin-top:-6px">진단서·의견서는 이 기한 안, 학교 전담기구 심의 전에 내는 것이 좋습니다.</p>'+
@@ -700,7 +827,10 @@ v_2:{title:'사안조사 단계',col:'blue',
     '</ul>'+
     '<div class="ib"><strong>조사는 이렇게 보호받으며 진행됩니다</strong><br>· 관련 학생은 <b>따로따로</b> 조사하고, 이동 동선과 면담 시간도 나눕니다<br>· 교무실처럼 열린 곳이 아닌 <b>상담실 등 독립된 공간</b>에서 이야기를 듣습니다<br>· 조사는 되도록 <b>수업 시간 밖</b>에 하고, 수업 중에 했다면 따로 배울 기회를 줍니다<br>· 학교는 사안을 줄이거나 <b>성급하게 화해를 권해서는 안 됩니다</b></div>'+
     '<div class="ib or"><strong>진단서 제출 시기가 중요합니다</strong><br>신체 피해가 있다면 <b>학교 심의 전에</b> 2주 이상 진단서를 제출하세요.<br>진단서가 있으면 자체해결 대상에서 제외되어 반드시 심의위원회(학교폭력대책심의위원회)에서 처리됩니다.</div>'+
-    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">비밀 보호는 어떻게 되나요? <span class="ar">▼</span></button><div class="acc-b">학교폭력 관련자의 <b>비밀 누설은 법으로 금지</b>되어 있습니다 (1년 이하 징역 또는 1천만원 이하 벌금).<br>자녀의 이름·주소 등 개인정보는 외부에 공개되어서는 안 됩니다.</div></div>'},
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">비밀 보호는 어떻게 되나요? <span class="ar">▼</span></button><div class="acc-b">학교폭력 관련자의 <b>비밀 누설은 법으로 금지</b>되어 있습니다 (1년 이하 징역 또는 1천만원 이하 벌금).<br>자녀의 이름·주소 등 개인정보는 외부에 공개되어서는 안 됩니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학교가 "학교폭력이 아니다"라고 하면 끝인가요? <span class="ar">▼</span></button><div class="acc-b">조사 결과 학교폭력이 아니라고 확인되면 학교 전담기구 회의를 거쳐 종결할 수 있습니다. 하지만 <b>피해 학생과 보호자가 심의위원회 개최를 요청하면 학교는 반드시 요청해야</b> 합니다. 이때 학교폭력 여부는 심의위원회가 판단합니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">관계회복 프로그램은 무엇인가요? 꼭 해야 하나요? <span class="ar">▼</span></button><div class="acc-b">관계회복 프로그램은 두 학생이 따로 면담한 뒤, 준비가 되었을 때 만나 이야기하고 사과를 주고받으며 일상으로 돌아가도록 돕는 과정입니다. 학교나 교육지원청 <b>관계회복 지원팀</b>이 진행합니다.<br><b>양쪽이 모두 동의할 때만</b> 하고, 한쪽이 그만두고 싶다고 하면 중단됩니다. 프로그램을 해도 <b>사안 처리는 그대로 진행</b>되며, 관계가 회복되면 심의위원회가 조치를 정할 때 \'화해 정도\'로 참고될 수 있습니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">한국어가 서툰 아이도 제대로 말할 수 있나요? <span class="ar">▼</span></button><div class="acc-b">이주배경 학생이나 북한배경 학생은 조사와 심의 때 <b>통역</b>을 지원받거나 믿을 수 있는 보호자·담당 교사가 함께할 수 있습니다. 서면 조사지는 <b>모국어로 써도</b> 됩니다. 보호자 상담 때도 통역을 요청할 수 있습니다.</div></div>'},
 
 v_3:{title:'학교장 자체해결',col:'blue',
   steps:['신고·접수','사안조사','자체해결/심의','조치이행','사후지도'],act:2,
@@ -714,7 +844,9 @@ v_3:{title:'학교장 자체해결',col:'blue',
     '</ul>'+
     '<div class="ib or"><strong>주의</strong><br>자체해결에 동의하면 나중에 같은 사안으로 심의위원회를 <b>다시 요청할 수 없습니다.</b><br>단, 재산상 피해 복구 불이행이나 새로운 사실이 확인된 경우는 예외입니다.</div>'+
     '<div class="ib"><strong>동의하지 않아도 됩니다</strong><br>요건에 해당하더라도 피해 관련 학생과 보호자가 원하면 <b>심의위원회를 열어달라고 요청할 수 있습니다.</b><br>자체해결은 강요할 수 없으며, 반드시 자유로운 의사로 동의해야 합니다.</div>'+
-    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">심의위원회 요청 후 자체해결로 바꿀 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 심의위원회 <b>의결 전까지</b> 학교에 서면으로 개최 취소 의사를 표명하면 자체해결로 간주합니다.</div></div>'},
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">심의위원회 요청 후 자체해결로 바꿀 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 심의위원회 <b>의결 전까지</b> 학교에 서면으로 개최 취소 의사를 표명하면 자체해결로 간주합니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">진단서를 냈다가 다시 돌려받으면 자체해결이 되나요? <span class="ar">▼</span></button><div class="acc-b">아닙니다. 2주 이상 진단서를 <b>학교에 한 번 내면</b>, 나중에 마음이 바뀌어 돌려받더라도 자체해결 요건을 충족하지 않는 것으로 봅니다. 진단서는 <b>학교 전담기구 심의일 전까지</b> 내야 요건 판단에 반영됩니다.<br>참고로 \'재산상 피해\'에는 물건값뿐 아니라 <b>치료비</b>도 들어갑니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">상대 학생이 여러 명이면 어떻게 되나요? <span class="ar">▼</span></button><div class="acc-b">피해 학생 1명에 상대 학생이 여러 명이면, <b>모든 상대 학생에 대해 자체해결에 동의할 때만</b> 자체해결이 됩니다. 한 명이라도 동의하지 않으면 심의위원회로 갑니다.<br>반대로 피해 학생이 여러 명이면 피해 학생마다 따로 판단합니다.</div></div>'},
 
 v_4:{title:'심의위원회 참석 준비',col:'blue',
   steps:['신고·접수','사안조사','심의위원회','조치이행','사후지도'],act:2,
@@ -731,8 +863,12 @@ v_4:{title:'심의위원회 참석 준비',col:'blue',
     '<div class="tli" data-icon="②"><div class="tp">심의위원회 요청 후 7일 이내</div><div class="tt">피해학생 보호조치</div><div class="tb">심의위원회가 요청하면 교육장이 보호자 동의를 받아 7일 이내에 보호조치를 합니다.</div></div>'+
     '<div class="tli" data-icon="③"><div class="tp">심의위원회 조치 후 14일 이내</div><div class="tt">상대 학생 조치 결정 통보</div><div class="tb">교육장이 서면으로 통보합니다. 결과가 납득되지 않으면 이의신청 절차를 검토하세요.</div></div>'+
     '</div>'+
-    '<div class="ib">심의 당일에는 양쪽의 <b>출석 시간과 대기 공간을 나누어</b> 마주치지 않도록 합니다. 불안하다면 학교에 미리 요청해 두세요.</div>'+
-    '<div class="ib or"><strong>조치 이행이 지연되면</strong><br>피해학생과 보호자는 <b>교육감에게 직접 신고</b>할 수 있습니다.</div>'},
+    '<div class="ib">심의 당일에는 양쪽의 <b>출석 시간과 대기 공간을 나누어</b> 마주치지 않도록 합니다. 불안하다면 학교에 미리 요청해 두세요.<br>직접 출석이 원칙이지만, 사정이 있으면 <b>전화·화상·서면</b> 방식으로 심의를 요청할 수 있습니다. 심의 출석으로 빠진 수업은 출석으로 인정될 수 있습니다.</div>'+
+    '<div class="ib or"><strong>조치 이행이 지연되면</strong><br>피해학생과 보호자는 <b>교육감에게 직접 신고</b>할 수 있습니다.</div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">아이를 치료한 전문가 의견도 들어 달라고 할 수 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 아이가 상담이나 치료를 받았다면 그 <b>상담 전문가나 전문의의 의견</b>을 들어 달라고 요청할 수 있고, 피해 학생 측이 요청하면 심의위원회는 <b>반드시</b> 의견을 들어야 합니다. 출석이 어려우면 서면으로도 됩니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">공정하지 않을 것 같은 위원이 있으면요? <span class="ar">▼</span></button><div class="acc-b">공정한 심의를 기대하기 어려운 사정이 있다면 그 이유를 적어 <b>기피신청</b>을 할 수 있습니다. 심의위원회가 의결로 받아들일지 정하며, 해당 위원은 그 의결에 참여하지 못합니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">경찰 수사 중이면 심의가 미뤄지나요? <span class="ar">▼</span></button><div class="acc-b">심의위원회는 기한 안에 열리지만, 경찰 수사 중이거나 사실 확인이 어려운 사안은 <b>조치 결정을 유보</b>하고 추가 조사 뒤 다시 열 수 있습니다. 유보한 경우 그 사실과 이유를 서면으로 알려 줍니다. 이 기간에도 학교장은 긴급조치를 할 수 있습니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">치료비나 위자료 합의도 도와주나요? (분쟁조정) <span class="ar">▼</span></button><div class="acc-b">네. 피해·가해 학생이나 보호자 중 한쪽이 심의위원회(또는 교육감)에 <b>분쟁조정</b>을 서면으로 신청할 수 있습니다. 치료비·위자료 같은 손해배상 합의를 중립적인 위원이 도와줍니다.<br>신청 후 <b>5일 안에 시작</b>하고 <b>1개월 안에</b> 마칩니다. 한쪽이 거부하거나 고소·민사소송을 낸 경우에는 열리지 않거나 중지될 수 있습니다. 합의가 되어도 심의위원회 조치는 따로 결정되며, 합의 내용은 조치를 정할 때 참고됩니다.</div></div>'},
 
 v_5:{title:'보호조치 안내',col:'blue',
   steps:['신고·접수','사안조사','심의위원회','조치이행','사후지도'],act:3,
@@ -748,7 +884,11 @@ v_5:{title:'보호조치 안내',col:'blue',
     '<p style="font-size:.86rem;color:var(--gray3);margin:-6px 0 14px">※ 제5호는 법 개정으로 삭제되었습니다.</p>'+
     '<div class="ib pu"><strong>장애가 있는 아이라면</strong><br>심의위원회는 <b>장애인 전문 상담</b>이나 <b>장애인 전문 치료기관 요양</b>을 학교장에게 요청할 수 있고, 요청을 받은 학교장은 반드시 해야 합니다. 또 피해 학생이 장애 학생이면 상대 학생의 조치가 <b>더 무거워질 수 있습니다</b>.</div>'+
     '<div class="ib gn"><strong>치료비 부담</strong><br>상담·일시보호·치료 비용은 <b>가해 관련 학생 보호자 부담</b>이 원칙입니다.<br>신속한 치료를 위해 학교안전공제회 또는 시·도교육청이 먼저 지급한 뒤 치료비를 부담할 쪽에 청구할 수 있습니다.</div>'+
-    '<div class="ib"><strong>치료 중 출석·성적 불이익 없습니다</strong><br>보호조치로 인한 결석은 학교장이 인정하면 <b>출석일수에 포함</b>되고, 그동안 집에서 공부할 <b>학습자료</b>를 받을 수 있습니다.<br>성적 평가에서도 불이익을 받지 않도록 학교가 노력할 의무가 있습니다.</div>'},
+    '<div class="ib"><strong>치료 중 출석·성적 불이익 없습니다</strong><br>보호조치로 인한 결석은 학교장이 인정하면 <b>출석일수에 포함</b>되고, 그동안 집에서 공부할 <b>학습자료</b>를 받을 수 있습니다.<br>심의위원회 결정 <b>전이라도</b>, 학교폭력 피해 때문에 학교에 나오지 못한 사실을 학교 전담기구가 확인하면 출석으로 처리됩니다.<br>성적 평가에서도 불이익을 받지 않도록 학교가 노력할 의무가 있습니다.</div>'+
+    '<div class="ib gn"><strong>피해 학생 학생부에는 적히지 않습니다</strong><br>학생부(학교생활기록부)에 기재되는 것은 <b>가해 학생 조치</b>뿐입니다. 피해 학생이 받은 보호조치는 학생부에 <b>입력하지 않습니다</b>.</div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">치료비는 어떻게 청구하나요? 기간 제한이 있나요? <span class="ar">▼</span></button><div class="acc-b">학교나 보호자가 원하면 <b>학교안전공제회</b>에 직접 청구할 수 있고, 공제회가 먼저 지급한 뒤 가해 학생 보호자에게 돌려받습니다.<br>지원 기간은 심리상담·치료가 <b>2년</b>, 일시보호가 <b>30일</b>이며, 더 필요하면 심의를 거쳐 상담·치료를 <b>1년 더</b> 연장할 수 있습니다. 치료 기간이 적힌 진단서나 영수증을 챙겨 두세요.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">심리치료나 법률 도움은 어디서 받나요? <span class="ar">▼</span></button><div class="acc-b">교육지원청 <b>학교폭력제로센터</b>에 피해학생 지원팀이 있어 심리상담·치료·치유 프로그램과 <b>법률 지원</b>을 연결해 줍니다. 상대 측이 행정심판이나 소송을 냈을 때는 물론, 그렇지 않아도 피해 학생 보호를 위해 법률 지원을 신청할 수 있습니다. 학교를 통해 요청하세요.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">우리 아이가 전학을 가고 싶어 해요 <span class="ar">▼</span></button><div class="acc-b">교육 환경을 바꿔 줄 필요가 있다고 학교장이 인정하면 다른 학교로 <b>전학을 추천</b>할 수 있습니다(초등학교는 보호자 1명의 동의 필요). 자세한 절차는 학교와 교육지원청 전·편입학 지침을 따릅니다.<br>전학이나 상급학교 진학 때 피해 학생이 원하면, 동의를 받아 보호에 필요한 <b>최소한의 정보</b>를 새 학교에 전달해 계속 보호받도록 할 수 있습니다.</div></div>'},
 
 v_6:{title:'결과에 이의신청하기',col:'blue',
   steps:['신고·접수','사안조사','심의위원회','조치이행','이의신청'],act:4,
@@ -761,6 +901,8 @@ v_6:{title:'결과에 이의신청하기',col:'blue',
     '<div class="ib">행정심판을 거치지 않고 <b>바로 행정소송</b>을 낼 수도 있습니다. 이때는 결과를 안 날부터 <b>90일 이내</b>, 처분일부터 1년 이내입니다.</div>'+
     '<div class="ib or">피해학생 보호자는 가해학생 조치(1~9호)에 대해서도 이의신청을 할 수 있습니다.<br>이 경우 <b>가해학생 소속 학교가 있는 시·도교육청</b> 행정심판위원회에 제출합니다.</div>'+
     '<div class="ib"><strong>이의신청 중에도 조치는 계속 유효합니다</strong><br>이의신청을 해도 조치의 효력은 그대로 유지됩니다.<br>조치를 멈추려면 <b>집행정지 신청</b>을 별도로 해야 합니다.</div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">상대 측이 행정심판·소송을 내면 어떻게 되나요? <span class="ar">▼</span></button><div class="acc-b">교육청이 그 사실을 알려 주고, 원하면 심판이나 소송에 <b>참가</b>할 수 있습니다.<br>상대 측이 <b>집행정지</b>(조치를 잠시 멈춤)를 신청하면, 결정 전에 <b>피해 학생 측 의견을 들어야</b> 합니다. 마주 보고 말하기 어려우면 상대 측을 내보낸 뒤 말하거나 <b>서면</b>으로 의견을 낼 수 있습니다.<br>집행정지가 받아들여지면 피해 학생 측은 학교장에게 <b>분리를 요청</b>할 수 있고, 학교는 전담기구 심의를 거쳐 자리 배치·동선 분리 등을 해야 합니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">90일은 언제부터 세나요? <span class="ar">▼</span></button><div class="acc-b">교육장 명의의 <b>조치결정 통보서를 실제로 받은 날</b>부터 셉니다. 다른 경로로 미리 결과를 들었더라도 통보서를 받기 전에는 기간이 시작되지 않습니다. 통보서를 정당한 이유 없이 받지 않거나 돌려보내면 그때부터 기간이 시작됩니다.<br>가해 학생 측 행정소송은 1심을 소 제기일부터 <b>90일 안에</b> 선고하도록 법에 정해져 있습니다.</div></div>'+
     '<div class="dday-wrap">'+
     '<p>이의신청 기한 계산기</p>'+
     '<div class="dday-input">'+
@@ -780,7 +922,15 @@ p_1:{title:'처음 연락을 받았을 때',col:'orange',
     '<li><span class="ci">·</span><span><b>사실 확인이 완료되기 전</b>에는 사과나 인정 발언을 삼가세요. 조사 결과를 확인한 후 대응하는 것이 바람직합니다.</span></li>'+
     '<li><span class="ci">·</span><span>상대 학생 및 보호자에게 <b>직접 연락하는 것은 자제</b>하세요. 학교를 통해 소통하세요.</span></li>'+
     '</ul>'+
-    '<div class="ib or"><strong>자녀가 즉시 분리될 수 있습니다</strong><br>학교장은 피해 관련 학생 보호를 위해 자녀에게 <b>출석정지 등 긴급조치</b>를 즉시 부과할 수 있습니다.<br>긴급조치는 이후 심의위원회(학교폭력대책심의위원회)의 추인을 받아 확정됩니다.</div>'},
+    '<div class="ib or"><strong>자녀가 즉시 분리될 수 있습니다</strong><br>학교장은 피해 관련 학생 보호를 위해 자녀에게 <b>출석정지 등 긴급조치</b>를 즉시 부과할 수 있습니다.<br>긴급조치는 이후 심의위원회(학교폭력대책심의위원회)의 추인을 받아 확정됩니다.</div>'+
+    '<p class="sh or">접수 직후 학교가 하는 일</p>'+
+    '<ul class="cl">'+
+    '<li><span class="ci">·</span><span><b>접촉·협박·보복 금지(제2호)</b> — 신고가 접수되면 학교는 바로 이 조치를 합니다. 상대 학생에게 일부러 연락하거나 다가가지 말라는 뜻이며(온라인 포함), 수업 중 우연히 마주치는 것까지 막는 것은 아닙니다. 이 조치는 <b>학생부에 적히지 않습니다</b>.</span></li>'+
+    '<li><span class="ci">·</span><span><b>분리(최대 7일)</b> — 상대 학생이 원하면 자녀를 학교 안 별도 공간에서 지내게 합니다. <b>징계가 아니며</b>, 다른 반으로 옮기는 것도 아닙니다. 그동안 공부할 자료나 원격수업을 받을 수 있고, 학교 밖에서 지내면 출석으로 인정될 수 있습니다.</span></li>'+
+    '<li><span class="ci">·</span><span><b>긴급조치</b> — 여럿이 일부러 계속 괴롭힌 경우, 전치 2주 이상 상해, 신고에 대한 보복, 상대 측이 분리를 요청한 경우 등에는 출석정지·학급교체가 내려질 수 있습니다. 이때 학교는 <b>보호자 의견을 먼저 들어야</b> 합니다.</span></li>'+
+    '</ul>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">긴급조치로 출석정지를 받으면 결석 처리되나요? <span class="ar">▼</span></button><div class="acc-b">긴급조치 출석정지는 <b>미인정결석</b>으로 처리됩니다. 다만 심의위원회가 <b>추인하지 않거나</b>, 이후 학교장 자체해결로 끝나면 그 기간을 <b>출석으로 인정</b>할 수 있습니다.<br>긴급조치를 거부하거나 피하면 학교 징계 대상이 되니 꼭 따르세요.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">상대 쪽이 경찰에도 신고했대요 <span class="ar">▼</span></button><div class="acc-b">경찰 수사(형사 절차)와 학교 절차(교육·선도)는 <b>따로 진행</b>됩니다. 경찰 신고가 있어도 학교 조사와 심의는 계속되며, 수사 중이면 심의위원회가 조치 결정을 잠시 미룰 수 있습니다.</div></div>'},
 
 p_2:{title:'사안조사 단계',col:'orange',
   steps:['연락수신','사안조사','자체해결/심의','조치이행','사후지도'],act:1,
@@ -802,7 +952,9 @@ p_2:{title:'사안조사 단계',col:'orange',
     '<li><span class="ci">·</span><span>억울한 점이 있다면 <b>학교에 서면으로 의견 제출</b>이 가능합니다.</span></li>'+
     '</ul>'+
     '<div class="ib or"><strong>사안 진행 중 자진 전학은 제한됩니다</strong><br>신고 접수부터 조치 이행 완료까지 <b>신청에 의한 학적 변동은 원칙적으로 불가</b>합니다.</div>'+
-    '<div class="ib"><strong>억울한 점이 있다면 이렇게 하세요</strong><br>· 사실과 다른 부분은 <b>학교에 서면으로 의견을 제출</b>하세요<br>· 목격자 진술이나 메시지 등 <b>반증 자료를 직접 제출</b>할 수 있습니다<br>· 서로 다툰 일이라면 <b>상대 학생을 별도로 신고</b>하는 것도 가능합니다</div>'},
+    '<div class="ib"><strong>억울한 점이 있다면 이렇게 하세요</strong><br>· 사실과 다른 부분은 <b>학교에 서면으로 의견을 제출</b>하세요<br>· 목격자 진술이나 메시지 등 <b>반증 자료를 직접 제출</b>할 수 있습니다<br>· 서로 다툰 일이라면 <b>상대 학생을 별도로 신고</b>하는 것도 가능합니다</div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">교육지원청 조사관이 아이를 면담한대요 <span class="ar">▼</span></button><div class="acc-b">교육지원청 <b>학교폭력제로센터</b>의 <b>학교폭력 전담조사관</b>이 학교에 와서 학생과 보호자를 면담하고 사안조사 보고서를 씁니다. 조사관은 사실 확인을 맡을 뿐, 학교폭력인지나 조치 수준을 미리 말해 주지 않습니다.<br>서로 주장이 다르면 <b>양쪽 주장을 모두 기록</b>합니다. 하고 싶은 말이나 자료가 있으면 면담 때 꼭 전하세요.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">무엇을 보고 조치 수준을 정하나요? <span class="ar">▼</span></button><div class="acc-b">심의위원회는 <b>심각성·지속성·고의성</b>, <b>반성 정도</b>, <b>화해 정도</b>, 선도 가능성을 함께 봅니다. 여럿이 함께 했는지, 위험한 물건을 썼는지, 주도했는지도 살핍니다.<br>피해 학생이 장애 학생이거나, 신고한 학생에게 <b>보복</b>한 경우에는 조치가 더 무거워질 수 있습니다. 반대로 진심 어린 사과와 피해 회복 노력은 반영될 수 있습니다.</div></div>'},
 
 p_3:{title:'자체해결로 끝날 수 있다고 해요',col:'orange',
   steps:['연락수신','사안조사','자체해결/심의','조치이행','사후지도'],act:2,
@@ -814,7 +966,9 @@ p_3:{title:'자체해결로 끝날 수 있다고 해요',col:'orange',
     '<li><span class="ci">·</span><span>진심 어린 <b>서면 사과</b>를 상대 학생 측에 전달하세요. (학교를 통해, 직접 접촉은 자제)</span></li>'+
     '<li><span class="ci">·</span><span>자체해결 후에도 <b>학교에서 별도 생활지도</b>를 받을 수 있습니다.</span></li>'+
     '</ul>'+
-    '<div class="ib gn"><strong>자체해결 후 기억할 것</strong><br>자체해결로 종결되어도 동일한 학생에게 다시 폭력을 행사하면 <b>새로운 사안으로 처리</b>됩니다.<br>재산상 피해 복구를 약속하면 반드시 이행하세요.</div>'},
+    '<div class="ib gn"><strong>자체해결 후 기억할 것</strong><br>자체해결로 종결되어도 동일한 학생에게 다시 폭력을 행사하면 <b>새로운 사안으로 처리</b>됩니다.<br>재산상 피해 복구를 약속하면 반드시 이행하세요. <b>약속을 지키지 않으면</b> 피해 측이 같은 사안으로 심의위원회를 다시 요청할 수 있습니다.</div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">긴급조치로 출석정지 중이었는데 자체해결되면요? <span class="ar">▼</span></button><div class="acc-b">학교장이 긴급조치를 취소하고, 출석정지로 빠진 날을 <b>출석으로 인정</b>할 수 있습니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">사과하고 싶은데 어떻게 해야 하나요? <span class="ar">▼</span></button><div class="acc-b">먼저 <b>상대 학생이 사과를 받을 준비가 되었는지</b> 학교를 통해 확인하세요. 준비되지 않은 상태에서 하는 일방적인 사과는 오히려 상대를 더 힘들게 할 수 있습니다.<br>양쪽이 원하면 학교나 교육지원청의 <b>관계회복 프로그램</b>으로 사과 자리를 마련할 수 있습니다.</div></div>'},
 
 p_4:{title:'심의위원회 참석 준비',col:'orange',
   steps:['연락수신','사안조사','심의위원회','조치이행','사후지도'],act:2,
@@ -825,7 +979,11 @@ p_4:{title:'심의위원회 참석 준비',col:'orange',
     '<li><span class="ci">·</span><span>상대 학생 측에 직접 연락하지 마세요. 접촉 금지 긴급조치가 내려졌다면 <b>위반</b>이 되고, 신고에 대한 <b>보복행위</b>로 새 사안이 될 수 있습니다. 학교를 통해서만 소통하세요.</span></li>'+
     '<li><span class="ci">·</span><span>위원회 출석으로 인한 결석은 학교장이 인정하면 <b>출석으로 처리</b>됩니다.</span></li>'+
     '</ul>'+
-    '<div class="ib"><strong>결과 통보까지 최대 14일</strong><br>심의위원회 의결 후 교육장은 <b>14일 이내</b>에 관련 학생 및 보호자에게 서면으로 통보해야 합니다.<br>결과를 받은 날짜를 기록해 두세요. 이의신청 기간(90일)의 시작일이 됩니다.</div>'},
+    '<div class="ib"><strong>결과 통보까지 최대 14일</strong><br>심의위원회 의결 후 교육장은 <b>14일 이내</b>에 관련 학생 및 보호자에게 서면으로 통보해야 합니다.<br>결과를 받은 날짜를 기록해 두세요. 이의신청 기간(90일)의 시작일이 됩니다.</div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">꼭 직접 출석해야 하나요? <span class="ar">▼</span></button><div class="acc-b">직접 출석해 진술하는 것이 원칙입니다. 사정이 있으면 <b>전화·화상·서면</b> 방식을 요청할 수 있습니다. 자녀에게 장애가 있거나 한국어가 서툴면 <b>특수교육 전문가·통역</b> 지원을 요청하세요.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">공정하지 않을 것 같은 위원이 있으면요? <span class="ar">▼</span></button><div class="acc-b">공정한 심의를 기대하기 어려운 사정이 있다면 그 이유를 적어 <b>기피신청</b>을 할 수 있습니다. 심의위원회가 의결로 정하며, 해당 위원은 그 의결에 참여하지 못합니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">치료비 합의를 하고 싶어요 (분쟁조정) <span class="ar">▼</span></button><div class="acc-b">피해·가해 어느 쪽이든 심의위원회(또는 교육감)에 <b>분쟁조정</b>을 서면으로 신청할 수 있습니다. 치료비·위자료 같은 손해배상을 중립적인 위원이 조정합니다. 신청 후 <b>5일 안에 시작</b>해 <b>1개월 안에</b> 마칩니다.<br>합의가 되어도 조치는 따로 결정되지만, 합의 내용은 조치를 정할 때 <b>화해 정도</b>로 참고됩니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">회의 내용을 나중에 볼 수 있나요? <span class="ar">▼</span></button><div class="acc-b">회의는 공개하지 않지만, 학생이나 보호자가 신청하면 <b>회의록 열람·복사</b>가 가능합니다. 이름·주소 등 개인정보와 위원 이름은 가리고 공개합니다.</div></div>'},
 
 p_5:{title:'조치(1~9호) 안내',col:'orange',
   steps:['연락수신','사안조사','심의위원회','조치이행','사후지도'],act:3,
@@ -852,7 +1010,12 @@ p_5:{title:'조치(1~9호) 안내',col:'orange',
     '</div>'+
     '<div class="dday-result" id="ddayResultP"></div>'+
     '</div>'+
-    '<div class="ib or"><strong>조치를 거부·미이행하면?</strong><br>통보일로부터 3개월 내 미이행 시 학교장이 보고, 심의위원회가 <b>추가 조치</b>를 부과할 수 있습니다.<br>제2호(접촉금지) 위반은 새로운 학교폭력 사안으로 접수됩니다.</div>'+
+    '<div class="ib or"><strong>조치를 거부·미이행하면?</strong><br>통보일로부터 3개월 내 미이행 시 학교장이 보고하고, 교육장이 <b>1개월 안에 이행하라</b>고 서면으로 다시 안내합니다. 그래도 하지 않으면 심의위원회가 <b>추가 조치</b>를 부과할 수 있습니다.<br>제2호(접촉금지) 위반은 새로운 학교폭력 사안으로 접수됩니다.</div>'+
+    '<div class="ib or"><strong>보호자도 특별교육을 받아야 합니다</strong><br>자녀가 제5호(특별교육) 또는 <b>함께 붙는 특별교육</b>을 받으면 보호자도 교육을 받아야 합니다. 제2·3호는 <b>3시간</b>, 제4·5·6·7·8호는 <b>5시간</b>이며, 통보 후 <b>3개월 안에</b> 마쳐야 합니다.<br>끝까지 받지 않으면 <b>300만원 이하 과태료</b>가 부과됩니다. 과태료를 내도 교육 의무는 남습니다. 다른 지역에 살면 온라인(학부모On누리)으로 받을 수 있는 경우도 있습니다.</div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">제2호 접촉금지는 언제까지인가요? <span class="ar">▼</span></button><div class="acc-b">심의위원회가 기간을 정하면 그때까지, 정하지 않았다면 <b>해당 학교급을 졸업할 때까지</b>입니다. 일부러 연락하거나 다가가는 것(온라인 포함)을 금지하는 것이며, 수업이나 생활 중 <b>우연히 마주치는 것까지 금지하지는 않습니다</b>. 다만 우연을 핑계로 자주 접촉하면 추가 조치가 내려질 수 있습니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">전학(제8호) 조치를 받으면 어떻게 되나요? <span class="ar">▼</span></button><div class="acc-b">피해 학생과 충분히 떨어진 학교로 배정되며, 나중에 피해 학생이 다니는 학교로 <b>다시 돌아올 수 없습니다</b>. 상급학교에 진학할 때도 피해 학생과 <b>다른 학교</b>로 배정되고, 피해 학생 학교가 먼저 정해집니다.<br>신고부터 조치 이행이 끝날 때까지 <b>스스로 전학을 신청하는 것은 원칙적으로 제한</b>됩니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">학생부에 적히지 않는 것도 있나요? <span class="ar">▼</span></button><div class="acc-b">네. 신고 접수 때 바로 하는 <b>제2호 긴급조치</b>, 조치에 <b>덧붙여 받는 특별교육</b>(부가 특별교육)은 기재하지 않습니다. 학교장 자체해결로 끝난 사안도 기재하지 않습니다.<br>반대로 학교장의 출석정지·학급교체 등 긴급조치를 심의위원회가 <b>추인하면</b> 심의위원회 조치가 되어 기재됩니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">졸업할 때 삭제 심의는 어떻게 하나요? <span class="ar">▼</span></button><div class="acc-b">4~7호는 졸업 직전(12~2월) 학교 전담기구가 심의해 졸업과 함께 지울 수 있습니다. 이때 <b>담임교사 의견서, 조치 이행 확인서, 학생 특별교육 이수 확인서, 보호자 특별교육 이수 확인서, 학생 자기 의견서</b>가 필요하며, <b>하나라도 없으면 삭제할 수 없습니다</b>.<br>반성 정도, 성실한 조치 이행, 피해 학생과의 관계 회복 노력(피해 학생의 삭제 동의서 등)을 살펴 결정합니다. 행정심판·소송을 진행했는지도 참고합니다.</div></div>'+
     '<div class="ib or"><strong>학생부 어디에 적히나요?</strong><br>조치 통보 공문을 받으면 학교는 즉시 기재합니다. 2026학년도에는 <b>초등 1~3학년</b>은 "학교폭력 조치상황관리"란에, <b>초등 4~6학년</b>은 조치에 따라 행동특성 및 종합의견·출결상황·인적·학적사항 특기사항에 적습니다.<br>행정심판·소송을 내도 기재는 그대로 두고, 조치가 바뀌면 그때 고칩니다.</div>'},
 
 p_6:{title:'결과에 이의신청하기',col:'orange',
@@ -865,31 +1028,31 @@ p_6:{title:'결과에 이의신청하기',col:'orange',
     '<div class="tli" data-icon="③"><div class="tp">결과 후 90일 이내</div><div class="tt">행정소송 제기 (필요 시)</div><div class="tb">행정심판 결과(재결서)를 받은 날부터 90일 이내에 법원에 행정소송을 낼 수 있습니다.</div></div>'+
     '</div>'+
     '<div class="ib">행정심판을 거치지 않고 <b>바로 행정소송</b>을 낼 수도 있습니다. 이때는 결과를 안 날부터 <b>90일 이내</b>, 처분일부터 1년 이내입니다.<br>행정심판·소송을 내도 학생부 기재는 그대로 두고, 조치가 바뀌면 그때 고칩니다.</div>'+
-    '<div class="ib">이의신청을 해도 <b>조치의 효력은 그대로 유지</b>됩니다.<br>조치를 정지하려면 <b>집행정지 신청</b>을 별도로 해야 합니다.</div>'}
+    '<div class="ib">이의신청을 해도 <b>조치의 효력은 그대로 유지</b>됩니다.<br>조치를 정지하려면 <b>집행정지 신청</b>을 별도로 해야 합니다.</div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">집행정지를 신청하면 어떻게 진행되나요? <span class="ar">▼</span></button><div class="acc-b">행정심판위원회나 법원은 집행정지를 결정하기 전에 <b>피해 학생 측 의견을 듣습니다</b>. 집행정지가 받아들여지면 그 기간에는 조치를 하지 않아도 되며, 1~3호 조치를 아직 이행하지 못한 경우 학생부 기재도 <b>보류</b>됩니다. 다만 나중에 청구가 기각되면 남은 기간 안에 이행했는지에 따라 기재 여부가 정해집니다.<br>집행정지 기간에는 피해 학생 측이 요청하면 학교가 <b>자리 배치·동선 분리</b> 같은 분리 조치를 합니다.</div></div>'+
+    '<div class="acc"><button class="acc-h" onclick="toggleAcc(this)">어디에, 어떻게 내나요? <span class="ar">▼</span></button><div class="acc-b">행정심판은 학교가 속한 <b>시·도교육청 행정심판위원회</b>에 <b>서면(심판청구서)</b>으로 냅니다. 공립·사립 관계없이 청구할 수 있습니다. 행정소송은 학생이 원고, 교육장이 피고가 되며 미성년자는 보호자(법정대리인)가 대신합니다.<br>법률 상담은 <b>대한법률구조공단(☎132)</b>에서도 받을 수 있습니다.</div></div>'}
 };
 
 var colMap={blue:'var(--blue2)',orange:'var(--orange)',green:'var(--green)',purple:'var(--purple)'};
 
-function goDet(role,step){
+/* 상세 안내 그리기 (화면 이동 없이) — 성공하면 true */
+function renderDet(role,step){
   var k=role+'_'+step, d=D[k];
-  if(!d)return;
+  if(!d) return false;
   var sh=d.steps.map(function(s,i){
     var c=i<d.act?'done':i===d.act?'active':'';
     return '<div class="ps '+c+'" data-n="'+(i+1)+'">'+s+'</div>';
   }).join('');
   var curStep=d.steps[d.act]||'';
   // 같은 역할 내 이전/다음 키 목록
-  var roleKeys=Object.keys(D).filter(function(k){return k.indexOf(role+'_')===0;}).sort();
+  var roleKeys=Object.keys(D).filter(function(x){return x.indexOf(role+'_')===0;}).sort();
   var curIdx=roleKeys.indexOf(k);
-  var prevKey=curIdx>0?roleKeys[curIdx-1]:null;
-  var nextKey=curIdx<roleKeys.length-1?roleKeys[curIdx+1]:null;
   document.getElementById('det-body').innerHTML=
     '<p class="stl" style="color:'+colMap[d.col]+'">'+d.title+'</p>'+
     '<div class="prog-wrap"><div class="prog-steps">'+sh+'</div>'+
     '<div class="prog-current-wrap"><span class="prog-current">현재: '+curStep+'</span></div></div>'+
     d.html+
     '<div class="nav" id="det-nav"></div>';
-  // 네비 버튼을 DOM으로 안전하게 삽입
   // 표 칸마다 제목을 붙여 휴대폰 카드 보기에서 쓰기
   document.querySelectorAll('#det-body table.mg').forEach(function(t){
     var hs=[].map.call(t.querySelectorAll('thead th'),function(th){return th.textContent;});
@@ -897,38 +1060,26 @@ function goDet(role,step){
       [].forEach.call(tr.children,function(td,i){ if(hs[i]) td.setAttribute('data-label',hs[i]); });
     });
   });
-  goSc('s-det');
-  // 네비 버튼 DOM 삽입 (이스케이프 없이 안전하게)
+  // 네비 버튼 DOM 삽입
   var nav=document.getElementById('det-nav');
-  if(nav){
-    nav.innerHTML='';
-    var btnBack=document.createElement('button');
-    btnBack.className='btn btn-s';
-    btnBack.textContent='← 다른 상황 보기';
-    btnBack.onclick=function(){goSc('s-'+role+'-sel');};
-    nav.appendChild(btnBack);
-    if(curIdx>0){
-      var pk=roleKeys[curIdx-1];
-      var btnPrev=document.createElement('button');
-      btnPrev.className='btn btn-s';
-      btnPrev.textContent='← '+D[pk].title;
-      (function(r,s){btnPrev.onclick=function(){goDet(r,s);};})(pk.split('_')[0],pk.split('_')[1]);
-      nav.appendChild(btnPrev);
-    }
-    if(curIdx<roleKeys.length-1){
-      var nk=roleKeys[curIdx+1];
-      var btnNext=document.createElement('button');
-      btnNext.className='btn btn-s';
-      btnNext.textContent=D[nk].title+' →';
-      (function(r,s){btnNext.onclick=function(){goDet(r,s);};})(nk.split('_')[0],nk.split('_')[1]);
-      nav.appendChild(btnNext);
-    }
-    var btnPrint=document.createElement('button');
-    btnPrint.className='btn btn-s';
-    btnPrint.textContent='인쇄';
-    btnPrint.onclick=function(){window.print();};
-    nav.appendChild(btnPrint);
-  }
+  function addBtn(txt,fn){ var b=document.createElement('button'); b.className='btn btn-s'; b.textContent=txt; b.onclick=fn; nav.appendChild(b); }
+  addBtn('← 다른 상황 보기',function(){goSc('s-'+role+'-sel');});
+  if(curIdx>0){ var pk=roleKeys[curIdx-1].split('_'); addBtn('← '+D[roleKeys[curIdx-1]].title,function(){goDet(pk[0],pk[1]);}); }
+  if(curIdx<roleKeys.length-1){ var nk=roleKeys[curIdx+1].split('_'); addBtn(D[roleKeys[curIdx+1]].title+' →',function(){goDet(nk[0],nk[1]);}); }
+  addBtn('인쇄',function(){window.print();});
+  // 저장해 둔 날짜로 기한 계산기 다시 채우기
+  try{
+    [['ddayInput','ddayDate',calcDday],['ddayInputP','ddayDateP',calcDdayP],['ddayInputP6','ddayDateP6',calcDdayP6]].forEach(function(a){
+      var inp=document.getElementById(a[0]), v=localStorage.getItem(a[1]);
+      if(inp&&v){ inp.value=v; a[2](); }
+    });
+  }catch(e){}
+  return true;
+}
+function goDet(role,step){
+  if(!renderDet(role,step)) return;
+  history.pushState({screen:'s-det',det:[role,step]},'',location.pathname+'?sc=s-det&d='+role+'_'+step);
+  showSc('s-det');
 }
 
 
@@ -955,16 +1106,7 @@ function calcDday(){
   // localStorage에 저장
   try{localStorage.setItem('ddayDate',inp.value);}catch(e){}
 }
-// 저장된 날짜 복원
-(function(){
-  try{
-    var saved=localStorage.getItem('ddayDate');
-    if(saved){
-      var inp=document.getElementById('ddayInput');
-      if(inp){inp.value=saved;calcDday();}
-    }
-  }catch(e){}
-})();
+
 
 
 function calcDdayP(){
@@ -1007,15 +1149,7 @@ function calcDdayP6(){
   }).join('');
   try{localStorage.setItem('ddayDateP6',inp.value);}catch(e){}
 }
-// 저장된 날짜 복원
-(function(){
-  try{
-    var sp=localStorage.getItem('ddayDateP');
-    if(sp){var i=document.getElementById('ddayInputP');if(i){i.value=sp;calcDdayP();}}
-    var sp6=localStorage.getItem('ddayDateP6');
-    if(sp6){var i6=document.getElementById('ddayInputP6');if(i6){i6.value=sp6;calcDdayP6();}}
-  }catch(e){}
-})();
+
 // ── 자가진단 ──────────────────────────────────────
 var QS=[
   {q:'신체적 피해로 병원 진료를 받았고, 2주 이상 치료가 필요하다는 진단서가 있나요?',
@@ -1125,6 +1259,288 @@ function showDiagRes(){
 }
 function resetDiag(){DA={};DS=0;renderDiag();}
 renderDiag();
+
+// ── 검색 ──────────────────────────────────────────
+/* 학부모가 실제로 쓰는 말 → 안내문에 쓰인 말 */
+var SYN={
+  '생기부':['학생부','학교생활기록부'],'생활기록부':['학생부','학교생활기록부'],'학생기록부':['학생부'],
+  '학폭위':['심의위원회'],'심의위':['심의위원회'],'학폭':['학교폭력'],'위원회':['심의위원회'],
+  '가해자':['가해'],'피해자':['피해'],
+  '행심':['행정심판'],'소송':['행정소송'],'불복':['이의신청','행정심판'],'항의':['이의신청'],'재심':['이의신청','행정심판'],
+  '강전':['전학'],'강제전학':['전학'],'정학':['출석정지'],'반교체':['학급교체'],'반바꾸':['학급교체'],'반바뀌':['학급교체'],
+  '접근금지':['접촉'],'연락금지':['접촉'],'퇴학':['퇴학처분','제9호'],
+  '기록':['기재'],'남나':['기재'],'남아':['기재'],'남는':['기재'],'남지':['기재'],'적히':['기재','적'],'적혀':['기재','적'],'올라가':['기재'],
+  '지워':['삭제'],'지우':['삭제'],'없어지':['삭제'],'지워지':['삭제'],
+  '합의':['합의','분쟁조정','화해'],'화해':['관계회복','화해'],'사과문':['서면사과'],
+  '병원비':['치료비'],'진료비':['치료비'],'보상':['치료비','손해배상','공제회'],'배상':['손해배상','분쟁조정'],'위자료':['위자료','분쟁조정'],
+  '경찰':['112','경찰','수사기관'],'고소':['경찰','고소'],'변호사':['법률'],
+  '녹음':['녹음','녹취'],'캡쳐':['캡처'],'스샷':['캡처'],'증거':['증거','자료'],
+  '왕따':['따돌림'],'은따':['따돌림'],'단톡':['단체대화방'],'단톡방':['단체대화방'],'카톡':['단체대화방','메시지'],
+  '빵셔틀':['셔틀'],'셔틀':['셔틀','심부름'],'성추행':['성폭력','성 관련'],'성희롱':['성폭력','성적인'],
+  '딥페':['딥페이크'],'사진유포':['퍼뜨'],
+  '마감':['기한','기간','이내'],'기한':['기한','기간','이내'],'시한':['기한','기간','이내'],'날짜':['기한','기간','날'],'며칠':['일 이내','일'],'언제까지':['이내','기한'],
+  '등교':['출석','등교'],'결석':['결석','출석'],'출석인정':['출석으로','출석일수','출석으로 인정'],
+  '장애':['장애'],'특수교육':['특수교육','특수학급'],'필담':['필담','글로'],'수화':['필담','청각'],'자폐':['장애','특성'],'발달장애':['발달장애','발달'],'가중':['가중','무거워','무겁게'],'색출':['색출','찾아내','신고했냐','찾는'],'유출':['유출','새어','누설'],'다문화':['이주배경'],'외국':['이주배경','통역'],'통역':['통역'],
+  '보복':['보복'],'협박':['협박'],'신고자':['신고한','신고 학생'],'목격':['목격'],
+  '학교장자체해결':['자체해결'],'자체종결':['자체해결'],'학교종결':['자체해결'],
+  '조사관':['조사관'],'제로센터':['제로센터'],'교육청':['교육지원청','교육청'],
+  '상담':['상담'],'심리치료':['심리','치료'],'전학가':['전학'],'이사':['전학'],
+  '부모교육':['보호자도','보호자 특별교육','특별교육'],'학부모교육':['보호자도','특별교육'],'과태료':['과태료']
+};
+/* 붙여 쓴 말을 나눌 때 쓰는 낱말 */
+var VOCAB=['학생부','기재','삭제','유보','기한','기간','진단서','분리','전학','자체해결','심의위원회','심의','이의신청','행정심판','행정소송',
+  '보호조치','출석','결석','사과','봉사','특별교육','출석정지','학급교체','긴급조치','증거','캡처','신고','조사','보복','접촉','장애',
+  '치료비','과태료','집행정지','관계회복','분쟁조정','조사관','제로센터','회의록','기피','통역','딥페이크','성폭력','사이버','따돌림',
+  '경찰','변호사','법률','상담','치료','졸업','상급학교','진학','2주','90일','14일','21일','7일','보호자','교육','학교폭력','피해','가해','목격'];
+var STOP=['어떻게','어떻게해','어떻게하나요','하나요','되나요','있나요','없나요','인가요','언제','뭐','무엇','무엇인가요','방법','알려','알려줘','알려주세요',
+  '주세요','궁금','궁금해요','궁금합니다','우리','우리아이','아이','아이가','자녀','자녀가','저희','제가','좀','혹시','꼭','정말','그냥','해야','하면','되면','하는','되는','할수','수','것','거','때'];
+var PART=['에서는','에게서','으로는','이에요','인가요','되나요','하나요','있나요','없나요','할까요','인데요','에서','에게','으로','까지','부터','처럼',
+  '이랑','하고','나요','까요','은','는','이','가','을','를','에','도','의','로','와','과','요','랑'];
+var CHIPS=['생기부 기재','진단서 2주','분리','이의신청 기한','전학','자체해결','치료비','증거 캡처','보복','관계회복','심의위원회 출석','긴급조치'];
+var ROLE_LB={v:'피해 관련',p:'가해 관련',b:'서로 다툼',w:'목격·신고',x:'공통'};
+var SC_INFO={'s-home':['x','처음 화면'],'s-v-sel':['v','피해 관련 학생 보호자'],'s-p-sel':['p','가해 관련 학생 보호자'],
+  's-b-sel':['b','서로 다툰 일·잘 모르겠어요'],'s-w-sel':['w','목격·신고 학생 보호자'],'s-dis':['x','장애가 있는 아이'],
+  's-type':['x','이것도 학교폭력인가요?'],'s-help':['x','도움받을 수 있는 곳'],'s-word':['x','낯선 말 풀이']};
+var BLK='.ib, .cl li, .acc, .mg tbody tr, .tli';
+var SIDX=null, SCORPUS='';
+
+function nz(t){ return String(t||'').toLowerCase().replace(/[\s ]+/g,''); }
+function txt(el){
+  if(!el) return '';
+  var c=el.cloneNode(true); [].forEach.call(c.querySelectorAll('br'),function(b){ b.replaceWith(' '); });
+  return c.textContent.replace(/▼/g,'').replace(/\s+/g,' ').trim();
+}
+function escH(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+/* 안내 덩어리(상자·목록 한 줄·접는 질문·표 한 줄·단계) 모으기. 덩어리 안의 덩어리는 빼고 바깥 것만 */
+function blocksOf(root){
+  return [].filter.call(root.querySelectorAll(BLK),function(el){
+    if(el.closest('.site-foot, .lic-ov, .dday-wrap, .home-srch')) return false;
+    var up=el.parentElement&&el.parentElement.closest(BLK);
+    return !(up&&root.contains(up));
+  });
+}
+/* 덩어리 위쪽의 소제목(.sh) 찾기 */
+function secOf(el,root){
+  for(var n=el;n&&n!==root;n=n.parentElement){
+    for(var p=n.previousElementSibling;p;p=p.previousElementSibling){
+      if(p.matches('p.sh')) return txt(p);
+      if(p.matches('p.stl')) return p.textContent.indexOf('자주 묻는')>=0?txt(p):'';
+    }
+  }
+  return '';
+}
+function headBody(el){
+  var head='', body=txt(el);
+  if(el.matches('.acc')){ head=txt(el.querySelector('.acc-h')); body=txt(el.querySelector('.acc-b')); }
+  else if(el.matches('.ib')){ var s=el.querySelector(':scope > strong'); if(s){ head=txt(s); body=body.slice(head.length).trim()||body; } }
+  else if(el.matches('.tli')){ head=txt(el.querySelector('.tt')); body=txt(el.querySelector('.tp'))+' · '+txt(el.querySelector('.tb')); }
+  else if(el.matches('tr')){ var td=el.children; head=(td[0]?txt(td[0])+' ':'')+(td[1]?txt(td[1]):''); body=[].slice.call(td,2).map(txt).join(' · '); }
+  else if(el.matches('li')){ body=body.replace(/^[·\d]\s*/,''); }
+  return {head:head, body:body};
+}
+function addEntry(o){
+  o.n=nz(o.head+' '+o.body); o.nh=nz(o.head); o.np=nz(o.page+' '+(o.role==='x'?'':ROLE_LB[o.role])); o.ns=nz(o.sec);
+  SIDX.push(o); SCORPUS+=o.np+'|'+o.ns+'|'+o.n+'\n';
+}
+function buildIndex(){
+  SIDX=[]; SCORPUS='';
+  // ① 단계별 상세 안내 (D)
+  Object.keys(D).forEach(function(k){
+    var d=D[k], role=k.split('_')[0], box=document.createElement('div');
+    box.innerHTML=d.html;
+    addEntry({role:role,page:d.title,sec:'',head:d.title,body:txt(box.querySelector('.ib'))||d.steps.join(' · '),go:{t:'det',k:k,i:-1},pg:1});
+    blocksOf(box).forEach(function(el,i){
+      var hb=headBody(el);
+      addEntry({role:role,page:d.title,sec:secOf(el,box),head:hb.head,body:hb.body,go:{t:'det',k:k,i:i}});
+    });
+  });
+  // ② 고정 화면
+  Object.keys(SC_INFO).forEach(function(id){
+    var sc=document.getElementById(id); if(!sc) return;
+    var wrap=sc.querySelector('.wrap')||sc;
+    blocksOf(wrap).forEach(function(el){
+      var hb=headBody(el);
+      addEntry({role:SC_INFO[id][0],page:SC_INFO[id][1],sec:secOf(el,wrap),head:hb.head,body:hb.body,go:{t:'sc',id:id,el:el}});
+    });
+  });
+  // ③ 자가진단
+  addEntry({role:'x',page:'자가진단',sec:'',head:'학교에서 끝날 수 있는 일인지 자가진단',
+    body:'4가지 질문으로 학교장 자체해결 요건(진단서 2주, 재산 피해, 지속성, 보복)을 확인합니다. 학교에서 끝나는지, 심의위원회까지 가는지 미리 살펴보세요.',go:{t:'sc',id:'s-diag'},pg:1});
+}
+
+/* 입력한 말 → 낱말 묶음(묶음끼리는 '그리고', 묶음 안은 '또는') */
+function strip(tok){
+  if(SCORPUS.indexOf(tok)>=0||SYN[tok]) return tok;
+  for(var i=0;i<PART.length;i++){
+    var p=PART[i];
+    if(tok.length-p.length>=2&&tok.slice(-p.length)===p){ var t=tok.slice(0,-p.length); return t; }
+  }
+  return tok;
+}
+function altsOf(tok){
+  var a=[tok];
+  if(SYN[tok]) SYN[tok].forEach(function(s){a.push(nz(s));});
+  else Object.keys(SYN).forEach(function(k){ if(k.length>=2&&tok.indexOf(k)===0&&tok.length-k.length<=2) SYN[k].forEach(function(s){a.push(nz(s));}); });
+  return a.filter(function(x,i){return x&&a.indexOf(x)===i;});
+}
+function hasAny(alts){ for(var i=0;i<alts.length;i++) if(SCORPUS.indexOf(alts[i])>=0) return true; return false; }
+function segment(tok){
+  var words=VOCAB.concat(Object.keys(SYN)).sort(function(a,b){return b.length-a.length;}), out=[], used=new Array(tok.length).fill(false);
+  words.forEach(function(w){
+    var nw=nz(w), p=tok.indexOf(nw);
+    while(p>=0){
+      var free=true; for(var j=p;j<p+nw.length;j++) if(used[j]){free=false;break;}
+      if(free){ for(j=p;j<p+nw.length;j++) used[j]=true; out.push([p,nw]); }
+      p=tok.indexOf(nw,p+1);
+    }
+  });
+  return out.sort(function(a,b){return a[0]-b[0];}).map(function(x){return x[1];});
+}
+function parseQuery(q){
+  var toks=String(q).toLowerCase().replace(/[?!.,~·'"“”‘’()\[\]{}:;\/\\]+/g,' ').split(/\s+/).filter(Boolean), groups=[];
+  toks.forEach(function(raw){
+    var t=nz(raw); if(!t||STOP.indexOf(t)>=0) return;
+    t=strip(t); if(STOP.indexOf(t)>=0) return;
+    if(t.length<2&&!/^\d/.test(t)&&!SYN[t]) return;
+    /* 붙여 쓴 말(예: 생기부기재)은 아는 낱말로 나눠서 각각 찾기 */
+    if(SCORPUS.indexOf(t)<0&&!SYN[t]&&t.length>=3){
+      var seg=segment(t), gs=[];
+      seg.forEach(function(x){ var al=altsOf(x); if(hasAny(al)) gs.push(al); });
+      if(gs.length>=2||(gs.length===1&&!hasAny(altsOf(t)))){ groups=groups.concat(gs); return; }
+    }
+    groups.push(altsOf(t));
+  });
+  // 같은 묶음 중복 제거
+  var seen={}; return groups.filter(function(g){ var k=g.join('|'); if(seen[k]) return false; seen[k]=1; return true; });
+}
+function doSearch(q){
+  if(!SIDX) buildIndex();
+  var G=parseQuery(q), res=[];
+  if(!G.length) return {groups:G,hits:[]};
+  SIDX.forEach(function(e){
+    var m=0, sc=0;
+    G.forEach(function(alts){
+      var hit=false, s=0;
+      alts.forEach(function(a){
+        var hn=e.n.indexOf(a)>=0, hh=e.nh.indexOf(a)>=0, hp=e.np.indexOf(a)>=0, hs=e.ns.indexOf(a)>=0;
+        if(hn||hp||hs){ hit=true; var v=(hn?10:0)+(hh?6:0)+(hp?4:0)+(hs?3:0); if(v>s) s=v; }
+      });
+      if(hit){ m++; sc+=s; }
+    });
+    if(m){ if(e.pg) sc-=3; res.push({e:e,m:m,s:sc}); }
+  });
+  var full=res.filter(function(r){return r.m===G.length;}), partial=false, list=full;
+  if(!full.length&&G.length>1){ list=res; partial=true; }
+  list.sort(function(a,b){ return b.m-a.m||b.s-a.s; });
+  var hits=list.slice(0,40).map(function(r){return r.e;});
+  hits.partial=partial;
+  return {groups:G,hits:hits};
+}
+
+/* 글 속 찾은 말에 형광펜 (띄어쓰기 무시) */
+function hl(text,alts,win){
+  var chars=[],idx=[],i;
+  for(i=0;i<text.length;i++){ if(!/\s/.test(text[i])){ chars.push(text[i].toLowerCase()); idx.push(i); } }
+  var s=chars.join(''), R=[];
+  alts.forEach(function(a){ if(!a) return; var p=0; while((p=s.indexOf(a,p))>=0){ R.push([idx[p],idx[p+a.length-1]+1]); p+=a.length; } });
+  R.sort(function(a,b){return a[0]-b[0];});
+  var M=[]; R.forEach(function(r){ if(M.length&&r[0]<=M[M.length-1][1]) M[M.length-1][1]=Math.max(M[M.length-1][1],r[1]); else M.push(r.slice()); });
+  var st=0,en=text.length;
+  if(win&&text.length>win){
+    var c0=M.length?M[0][0]:0; st=Math.max(0,c0-Math.floor(win*0.3)); en=Math.min(text.length,st+win); if(en-st<win) st=Math.max(0,en-win);
+  }
+  var out='',cur=st;
+  M.forEach(function(r){ var a=Math.max(r[0],st), b=Math.min(r[1],en); if(a>=b||a<cur) return; out+=escH(text.slice(cur,a))+'<mark>'+escH(text.slice(a,b))+'</mark>'; cur=b; });
+  out+=escH(text.slice(cur,en));
+  return (st>0?'…':'')+out+(en<text.length?'…':'');
+}
+
+var SHITS=[], STIMER=null;
+function renderChips(){
+  ['home-chips','sr-chips'].forEach(function(id){
+    var box=document.getElementById(id); if(!box) return; box.innerHTML='';
+    CHIPS.slice(0,id==='home-chips'?6:CHIPS.length).forEach(function(c){ var b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=c; b.onclick=function(){ chipSearch(c); }; box.appendChild(b); });
+  });
+}
+function runSearch(q,setInput){
+  q=String(q||'').trim();
+  var inp=document.getElementById('sq2'); if(setInput&&inp) inp.value=q;
+  var cnt=document.getElementById('sr-count'), list=document.getElementById('sr-list');
+  if(!q){ SHITS=[]; cnt.textContent='찾고 싶은 말을 입력하거나 아래 낱말을 눌러 보세요.'; list.innerHTML=''; return SHITS; }
+  var r=doSearch(q); SHITS=r.hits;
+  var alts=[]; r.groups.forEach(function(g){ alts=alts.concat(g); }); alts.sort(function(a,b){return b.length-a.length;});
+  if(!SHITS.length){
+    cnt.textContent='';
+    list.innerHTML='<div class="sr-empty"><b>\''+escH(q)+'\'</b>에 맞는 안내를 찾지 못했어요.<br>· 낱말을 짧게 줄이거나 다른 말로 바꿔 보세요 (예: \'생기부\' → \'학생부\')<br>· 위의 추천 낱말을 눌러 보세요<br>· 궁금한 점은 <b>담임교사나 학교폭력 책임교사</b>에게 문의하세요. '+
+      '<a href="javascript:void(0)" onclick="goSc(\'s-help\')" style="color:var(--blue);font-weight:700">도움받을 수 있는 곳 보기 →</a></div>';
+    return SHITS;
+  }
+  cnt.innerHTML='<b>\''+escH(q)+'\'</b> 관련 안내 <b>'+SHITS.length+'</b>건'+(SHITS.length>=40?' (많이 맞는 순서로 40건까지)':'');
+  var html=SHITS.partial?'<p class="sr-note">입력한 낱말이 모두 함께 나오는 안내가 없어, 일부 낱말만 맞는 안내를 보여 드려요.</p>':'';
+  SHITS.forEach(function(e,i){
+    var head=e.head||e.sec||e.page, body=e.body;
+    if(nz(body)===nz(head)) body='';
+    html+='<button type="button" class="sr-item '+e.role+'" onclick="goHit(SHITS['+i+'])">'+
+      '<span class="sr-path"><span class="sr-tag">'+ROLE_LB[e.role]+'</span>'+escH(e.page)+(e.sec&&e.sec!==head?' › '+escH(e.sec):'')+'</span>'+
+      '<span class="sr-head">'+hl(head,alts,0)+'</span>'+
+      (body?'<span class="sr-snip">'+hl(body,alts,110)+'</span>':'')+'</button>';
+  });
+  list.innerHTML=html;
+  return SHITS;
+}
+function flashEl(el){
+  if(!el) return;
+  setTimeout(function(){ el.scrollIntoView({block:'center',behavior:'smooth'}); el.classList.add('qfind'); setTimeout(function(){ el.classList.remove('qfind'); },4000); },380);
+}
+function openAccOf(el){
+  if(el&&el.matches('.acc')){ var h=el.querySelector('.acc-h'); if(h&&!h.classList.contains('open')) toggleAcc(h); }
+}
+function goHit(e){
+  if(!e) return;
+  var g=e.go;
+  if(g.t==='det'){
+    var m=g.k.split('_'); goDet(m[0],m[1]);
+    if(g.i>=0){ var el=blocksOf(document.getElementById('det-body'))[g.i]; openAccOf(el); flashEl(el); }
+  } else {
+    goSc(g.id);
+    if(g.el){ openAccOf(g.el); flashEl(g.el); }
+  }
+}
+function pushSearch(q){
+  q=String(q||'').trim();
+  history.pushState({screen:'s-search',q:q},'',scUrl('s-search',q));
+  showSc('s-search');
+  runSearch(q,true);
+}
+function searchSubmit(id){
+  var inp=document.getElementById(id), q=inp?inp.value:'';
+  if(id==='sq1'){ pushSearch(q); return; }
+  clearTimeout(STIMER);
+  history.replaceState({screen:'s-search',q:q.trim()},'',scUrl('s-search',q.trim()));
+  runSearch(q,false);
+  if(inp) inp.blur();   /* 휴대폰 자판 내리기 */
+}
+function searchTyping(){
+  clearTimeout(STIMER);
+  STIMER=setTimeout(function(){
+    var q=document.getElementById('sq2').value.trim();
+    history.replaceState({screen:'s-search',q:q},'',scUrl('s-search',q));
+    runSearch(q,false);
+  },250);
+}
+function chipSearch(c){
+  if(document.getElementById('s-search').classList.contains('active')){
+    history.replaceState({screen:'s-search',q:c},'',scUrl('s-search',c));
+    runSearch(c,true);
+  } else pushSearch(c);
+}
+function openSearch(){
+  var sq=document.getElementById('sq2');
+  if(!document.getElementById('s-search').classList.contains('active')) pushSearch(sq?sq.value:'');
+  setTimeout(function(){ if(sq) sq.focus(); },60);
+}
+renderChips();
 
 function openLic(){document.getElementById('lic-ov').classList.add('open');}
 function closeLic(){document.getElementById('lic-ov').classList.remove('open');}
